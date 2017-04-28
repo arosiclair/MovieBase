@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package model;
-
+import java.sql.Date;
 /**
  *
  * @author jofrench
@@ -13,11 +13,14 @@ public class Employee {
     private long phoneNumber;
     private long SSN;
     private int wage;
+    private Date startDate;
     private String name;
     private String streetAddress;
     private String city;
     private String state;
     private int zipCode;
+    
+    public Employee(){}
     
     public long getPhoneNumber(){
         return phoneNumber;
@@ -36,6 +39,12 @@ public class Employee {
     }
     public void setWage(int wage){
         this.wage=wage;
+    }
+    public Date getStartDate(){
+        return startDate;
+    }
+    public void setStartDate(Date startDate){
+        this.startDate=startDate;
     }
     public String getName(){
         return name;
