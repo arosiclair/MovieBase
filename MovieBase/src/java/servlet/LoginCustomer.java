@@ -11,16 +11,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import manager.CustomerManager;
-import model.AccountType;
 import model.Customer;
 
 /**
  *
  * @author arosi
  */
-public class CreateCustomer extends HttpServlet {
+public class LoginCustomer extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,30 +31,15 @@ public class CreateCustomer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // get form parameters
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String firstName = request.getParameter("firstname");
-        String lastName = request.getParameter("lastname");
-        String email = request.getParameter("email");
-        AccountType type = AccountType.valueOf(request.getParameter("type"));
-        String ccNum = request.getParameter("ccnum");
-        String phonenumber = request.getParameter("phonenumber");
-        String address = request.getParameter("address");
-        String city = request.getParameter("city");
-        String state = request.getParameter("state");
-        int zipCode = Integer.parseInt(request.getParameter("zipcode"));
-        Customer newCustomer = CustomerManager.CreateCustomer(firstName, lastName, email, type, ccNum, phonenumber, address, city, state, zipCode, username, password);
-        
-        // Add session attributes
-        if(newCustomer != null){
-            HttpSession session = request.getSession();
-            session.setAttribute("customer", newCustomer);
-            //Redirect to customer page
+        Customer customer = CustomerManager.getCustomer(username, password);
+        if(customer != null){
+            request.getSession().invalidate();
+            request.setAttribute("customer", customer);
             response.sendRedirect("Customer");
         }else{
-            // An error occured, redirect back to register page
-            response.sendRedirect("register.html");
+            response.sendRedirect("index.jsp?loginFailed=true");
         }
     }
 
