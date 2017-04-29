@@ -11,22 +11,38 @@ import java.util.ArrayList;
  * @author jofrench
  */
 public class Customer {
+    private int id;
+    private Account account;
     private String firstName;
     private String lastName;
     private String email;
-    private int ID;
-    private String type;
-    private int CCNum;
+    private AccountType type;
+    private String CreditCardNumber;
     private int rating;
-    private long phoneNumber;
+    private String phoneNumber;
     private Date regDate;
-    private String streetAddress;
+    private String address;
     private String city;
     private String state;
     private int zipCode;
     private ArrayList<Movie> movieQueue;
     
     public Customer(){}
+    
+    public Customer(String firstName, String lastName, String email,
+                    AccountType type, String ccNum, String phoneNumber,
+                    String address, String city, String state, int zipCode){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.type = type;
+        this.CreditCardNumber = ccNum;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
     
     public String getFirstName(){
         return firstName;
@@ -47,22 +63,22 @@ public class Customer {
         this.email=email;
     }
     public int getID(){
-        return ID;
+        return id;
     }
     public void setID(int ID){
-        this.ID=ID;
+        this.id=ID;
     }
-    public String getType(){
+    public AccountType getType(){
         return type;
     }
-    public void setType(String type){
+    public void setType(AccountType type){
         this.type=type;
     }
-    public int getCCNum(){
-        return CCNum;
+    public String getCCNum(){
+        return CreditCardNumber;
     }
-    public void setCCNum(int CCNum){
-        this.CCNum=CCNum;
+    public void setCCNum(String CCNum){
+        this.CreditCardNumber=CCNum;
     }
     public int getRating(){
         return rating;
@@ -70,10 +86,10 @@ public class Customer {
     public void setRating(int rating){
         this.rating=rating;
     }
-    public long getPhoneNumber(){
+    public String getPhoneNumber(){
         return phoneNumber;
     }
-    public void setPhoneNumber(long phoneNumber){
+    public void setPhoneNumber(String phoneNumber){
         this.phoneNumber=phoneNumber;
     }
     public Date getRegDate(){
@@ -83,13 +99,13 @@ public class Customer {
         this.regDate=regDate;
     }
     public String getAddress(){
-        return streetAddress + ", " + city + ", " + state + " " + zipCode;
+        return address + ", " + city + ", " + state + " " + zipCode;
     }
-    public String getStreetAddress(){
-        return streetAddress;
+    public String getFullAddress(){
+        return address;
     }
-    public void setStreetAddress(String streetAddress){
-        this.streetAddress=streetAddress;
+    public void setAddress(String streetAddress){
+        this.address=streetAddress;
     }
     public String getCity(){
         return city;
@@ -111,5 +127,13 @@ public class Customer {
     }
     public ArrayList<Movie> getMovieQueue(){
         return movieQueue;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
     }
 }
