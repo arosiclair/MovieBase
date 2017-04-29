@@ -117,13 +117,13 @@ public class Customer {
         this.regDate=regDate;
     }
     public String getAddress(){
-        return address + ", " + city + ", " + state + " " + zipCode;
-    }
-    public String getFullAddress(){
         return address;
     }
-    public void setAddress(String streetAddress){
-        this.address=streetAddress;
+    public String getFullAddress(){
+        return address + ", " + city + ", " + state + " " + zipCode;
+    }
+    public void setAddress(String address){
+        this.address=address;
     }
     public String getCity(){
         return city;
