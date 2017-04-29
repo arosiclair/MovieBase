@@ -29,6 +29,10 @@
         <servlet-class>servlet.EmployeeHome</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Logout</servlet-name>
+        <servlet-class>servlet.Logout</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>BestSellingMovies</servlet-name>
         <servlet-class>servlet.BestSellingMovies</servlet-class>
     </servlet>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>BestSellingMovies</servlet-name>
         <url-pattern>/BestSellingMovies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Logout</servlet-name>
+        <url-pattern>/Logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

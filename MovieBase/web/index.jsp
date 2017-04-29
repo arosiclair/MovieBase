@@ -32,7 +32,7 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
-                <h2>Customer Log In</h2>
+                <h2>Log In</h2>
                 <form method="POST" action="Login" style="margin-bottom: 20px;">
                     <div class="form-group">
                         <label for="username">Username:</label>
