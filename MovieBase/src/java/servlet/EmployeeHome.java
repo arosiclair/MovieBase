@@ -35,7 +35,6 @@ public class EmployeeHome extends HttpServlet {
             response.sendRedirect("index.jsp?notLoggedIn=true");
             return;
         }
-        System.out.println("here " + session.getAttribute("employee"));
         // Forward the user to the main employee page
         request.getRequestDispatcher("employee.html").forward(request, response);
   }
