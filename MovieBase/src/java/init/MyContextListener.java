@@ -7,6 +7,7 @@ package init;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import manager.DBConnectionManager;
 
 
 /**
@@ -22,6 +23,7 @@ public class MyContextListener implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        DBConnectionManager.closeConnection();
     }
     
 }

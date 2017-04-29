@@ -37,4 +37,17 @@ public class DBConnectionManager {
         return connection;
     }
     
+    
+    public static boolean closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(DBConnectionManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return true;
+    }
+
 }
