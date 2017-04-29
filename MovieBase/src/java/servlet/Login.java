@@ -6,19 +6,20 @@
 package servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import manager.CustomerManager;
+import manager.EmployeeManager;
 import model.Customer;
+import model.Employee;
 
 /**
  *
  * @author arosi
  */
-public class LoginCustomer extends HttpServlet {
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -33,13 +34,28 @@ public class LoginCustomer extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        Customer customer = CustomerManager.getCustomer(username, password);
-        if(customer != null){
+
+        String user = request.getParameter("action");
+        if(user.equals("customer")) {
+          Customer customer = CustomerManager.getCustomer(username, password);
+          if(customer != null){
+              request.getSession().invalidate();
+              request.getSession().setAttribute("customer", customer);
+              response.sendRedirect("Customer");
+          }else{
+              response.sendRedirect("index.jsp?loginFailed=true");
+          }
+        }
+        else {
+          Employee employee = EmployeeManager.getEmployee(username, password);
+          if(employee != null) {
             request.getSession().invalidate();
-            request.setAttribute("customer", customer);
-            response.sendRedirect("Customer");
-        }else{
-            response.sendRedirect("index.jsp?loginFailed=true");
+            request.getSession().setAttribute("employee", employee);
+              response.sendRedirect("Employee");
+          }else{
+              response.sendRedirect("index.jsp?loginFailed=true");
+          }
+            
         }
     }
 
