@@ -41,8 +41,8 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
-                <h2>Hello, Customer</h2>
-                <a class="btn btn-default" href="WatchList">My Watch List</a><br>
+                <h2>Welcome, ${customer.firstName}</h2>
+                <a class="btn btn-default" href="CustomerWatchList">My Watch List</a><br>
                 <a class="btn btn-default" href="#">Rented Movies</a><br>
                 <a class="btn btn-default" href="#">Rental History</a><br>
                 <a class="btn btn-default" href="#">View Best Sellers</a><br>

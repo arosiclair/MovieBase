@@ -11,11 +11,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
 import model.AccountType;
 import model.Customer;
+import model.Movie;
 
 /**
  *
@@ -89,8 +92,10 @@ public class CustomerManager {
             ResultSet rs = stmt.executeQuery();
             // If we have a match, return the customer object
             if (rs.next()){
-                int custId = rs.getInt("customerId");
-                return findCustomer(custId);
+                Account account = parseAccount(rs);
+                Customer customer = findCustomer(account.getCustomerId());
+                customer.setAccount(account);
+                return customer;
             }
             else
                 return null;
@@ -122,6 +127,7 @@ public class CustomerManager {
     // Pass in a result set with the cursor at the customer row you want to parse
     private static Customer parseCustomer(ResultSet rs){
         try {
+            int id = rs.getInt("Id");
             String firstName = rs.getString("FirstName");
             String lastName = rs.getString("LastName");
             String email = rs.getString("Email");
@@ -134,7 +140,43 @@ public class CustomerManager {
             String city = rs.getString("City");
             String state = rs.getString("State");
             int zipCode = rs.getInt("ZipCode");
-            return new Customer(firstName, lastName, email, type, ccNum, rating, phoneNumber, address, city, state, zipCode);
+            return new Customer(id, firstName, lastName, email, type, ccNum, rating, phoneNumber, address, city, state, zipCode);
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public static List<Movie> getWatchList(int customerId) {
+        Connection connection = DBConnectionManager.getConnection();
+        List<Integer> movieIds = getWatchListMovieIds(customerId);
+        return MovieManager.getMovies(movieIds);
+    }
+
+    private static List<Integer> getWatchListMovieIds(int customerId) {
+        Connection connection = DBConnectionManager.getConnection();
+        String query = "SELECT MovieId FROM Queue WHERE CustomerId = ?;";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, customerId);
+            ResultSet rs = stmt.executeQuery();
+            List<Integer> movieIds = new ArrayList();
+            while(rs.next())
+                movieIds.add(rs.getInt("MovieId"));
+            return movieIds;
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    private static Account parseAccount(ResultSet rs) {
+        try {
+            int id = rs.getInt("Id");
+            String username = rs.getString("Username");
+            String password = rs.getString("Password");
+            int customerId = rs.getInt("CustomerId");
+            return new Account(id, username, password, customerId);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;

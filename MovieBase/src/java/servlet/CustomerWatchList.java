@@ -7,17 +7,21 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import manager.CustomerManager;
+import model.Customer;
+import model.Movie;
 
 /**
  *
  * @author arosi
  */
-public class CustomerHome extends HttpServlet {
+public class CustomerWatchList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -35,8 +39,11 @@ public class CustomerHome extends HttpServlet {
             response.sendRedirect("index.jsp?notLoggedIn=true");
             return;
         }
-        // Forward the user to the main customer page
-        request.getRequestDispatcher("customer.jsp").forward(request, response);
+        
+        Customer customer = (Customer) session.getAttribute("customer");
+        List<Movie> watchlist = CustomerManager.getWatchList(customer.getID());
+        request.setAttribute("watchList", watchlist);
+        request.getRequestDispatcher("customerwatchlist.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

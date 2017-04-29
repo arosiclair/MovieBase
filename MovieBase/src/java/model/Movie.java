@@ -15,10 +15,20 @@ public class Movie {
     private float distFee;
     private int numCopies;
     private int rating;
-    private int ID;
+    private int id;
     private ArrayList<Actor> actors;
     
     public Movie(){}
+
+    public Movie(int id, String name, String genre, int rating, int distFee, int numCopies) {
+        this.id = id;
+        this.name = name;
+        this.genre = genre;
+        this.rating = rating;
+        this.distFee = distFee;
+        this.numCopies = numCopies;
+        actors = new ArrayList();
+    }
     
     public String getName(){
         return name;
@@ -51,10 +61,10 @@ public class Movie {
         this.rating=rating;
     }
     public int getID(){
-        return ID;
+        return id;
     }
     public void setID(int ID){
-        this.ID=ID;
+        this.id=ID;
     }
     public ArrayList<Actor> getActors(){
         return actors;
