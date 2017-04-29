@@ -5,8 +5,8 @@
         <servlet-class>servlet.CreateCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginCustomer</servlet-name>
-        <servlet-class>servlet.LoginCustomer</servlet-class>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>servlet.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CustomerHome</servlet-name>
@@ -16,13 +16,21 @@
         <servlet-name>CustomerWatchList</servlet-name>
         <servlet-class>servlet.CustomerWatchList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateCustomerRep</servlet-name>
+        <servlet-class>servlet.CreateCustomerRep</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EmployeeHome</servlet-name>
+        <servlet-class>servlet.EmployeeHome</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginCustomer</servlet-name>
-        <url-pattern>/LoginCustomer</url-pattern>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerHome</servlet-name>
@@ -31,6 +39,14 @@
     <servlet-mapping>
         <servlet-name>CustomerWatchList</servlet-name>
         <url-pattern>/CustomerWatchList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateCustomerRep</servlet-name>
+        <url-pattern>/CreateCustomerRep</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeHome</servlet-name>
+        <url-pattern>/Employee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

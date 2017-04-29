@@ -33,7 +33,7 @@ and open the template in the editor.
         <div class="main">
             <div class="container">
                 <h2>Customer Log In</h2>
-                <form method="POST" action="LoginCustomer" style="margin-bottom: 20px;">
+                <form method="POST" action="Login" style="margin-bottom: 20px;">
                     <div class="form-group">
                         <label for="username">Username:</label>
                         <input type="text" class="form-control" name="username">
@@ -42,7 +42,8 @@ and open the template in the editor.
                         <label for="pwd">Password:</label>
                         <input type="password" class="form-control" name="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="submit" class="btn btn-primary" name="action" value="customer">Login</button>
+                    <button type="submit" class="btn btn-info" name="action" value="employee">Employee Login</button>
                 </form>
                 <p>Need an account?</p>
                 <a href="register.html"><button class="btn btn-default">Register</button></a>
