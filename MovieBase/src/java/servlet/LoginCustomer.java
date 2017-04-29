@@ -33,14 +33,15 @@ public class LoginCustomer extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        Customer customer = CustomerManager.getCustomer(username, password);
-        if(customer != null){
-            request.getSession().invalidate();
-            request.setAttribute("customer", customer);
-            response.sendRedirect("Customer");
-        }else{
-            response.sendRedirect("index.jsp?loginFailed=true");
-        }
+        System.out.println(request.getParameter("action"));
+//        Customer customer = CustomerManager.getCustomer(username, password);
+//        if(customer != null){
+//            request.getSession().invalidate();
+//            request.setAttribute("customer", customer);
+//            response.sendRedirect("Customer");
+//        }else{
+//            response.sendRedirect("index.jsp?loginFailed=true");
+//        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
