@@ -25,7 +25,7 @@ public class Employee {
     
     public Employee(){}
     
-    public Employee(String firstName, String lastName, String phoneNumber,
+    public Employee(long SSN, String firstName, String lastName, String phoneNumber,
             Date startDate, int hourlyRate, String address, String city, 
             String state, int zipCode, boolean isManager) {
       this.firstName = firstName;
