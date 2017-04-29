@@ -81,8 +81,8 @@ public class CustomerManager {
         Connection connection = DBConnectionManager.getConnection();
         try{
             // Lookup the account object
-            String query = "SELECT * FROM Account" +
-                            "WHERE Username = ? AND Password = ?";
+            String query = "SELECT * FROM Account " +
+                            "WHERE Username = ? AND Password = ?;";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -104,8 +104,8 @@ public class CustomerManager {
         Connection connection = DBConnectionManager.getConnection();
         try {
             // Lookup the Customer object
-            String query = "SELECT * FROM Customer" +
-                            "WHERE Id = ?";
+            String query = "SELECT * FROM Customer " +
+                            "WHERE Id = ?;";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, customerId);
             ResultSet rs = stmt.executeQuery();

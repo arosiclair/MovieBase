@@ -9,8 +9,8 @@
         <servlet-class>servlet.LoginCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Customer</servlet-name>
-        <servlet-class>servlet.Customer</servlet-class>
+        <servlet-name>CustomerHome</servlet-name>
+        <servlet-class>servlet.CustomerHome</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CustomerWatchList</servlet-name>
@@ -25,7 +25,7 @@
         <url-pattern>/LoginCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Customer</servlet-name>
+        <servlet-name>CustomerHome</servlet-name>
         <url-pattern>/Customer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>

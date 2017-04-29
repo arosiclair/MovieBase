@@ -36,11 +36,11 @@ and open the template in the editor.
                 <form method="POST" action="LoginCustomer" style="margin-bottom: 20px;">
                     <div class="form-group">
                         <label for="username">Username:</label>
-                        <input type="text" class="form-control" id="username">
+                        <input type="text" class="form-control" name="username">
                     </div>
                     <div class="form-group">
                         <label for="pwd">Password:</label>
-                        <input type="password" class="form-control" id="password">
+                        <input type="password" class="form-control" name="password">
                     </div>
                     <button type="submit" class="btn btn-primary">Login</button>
                 </form>

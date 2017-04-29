@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author arosi
  */
-public class Customer extends HttpServlet {
+public class CustomerHome extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,7 +32,7 @@ public class Customer extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if(session == null || session.getAttribute("customer") == null){
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("index.jsp?notLoggedIn=true");
             return;
         }
         // Forward the user to the main customer page

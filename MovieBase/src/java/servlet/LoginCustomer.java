@@ -36,7 +36,7 @@ public class LoginCustomer extends HttpServlet {
         Customer customer = CustomerManager.getCustomer(username, password);
         if(customer != null){
             request.getSession().invalidate();
-            request.setAttribute("customer", customer);
+            request.getSession().setAttribute("customer", customer);
             response.sendRedirect("Customer");
         }else{
             response.sendRedirect("index.jsp?loginFailed=true");
