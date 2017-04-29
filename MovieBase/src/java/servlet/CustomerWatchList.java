@@ -43,7 +43,7 @@ public class CustomerWatchList extends HttpServlet {
         Customer customer = (Customer) session.getAttribute("customer");
         List<Movie> watchlist = CustomerManager.getWatchList(customer.getID());
         request.setAttribute("watchList", watchlist);
-        request.getRequestDispatcher("watchlist.jsp");
+        request.getRequestDispatcher("customerwatchlist.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
