@@ -5,8 +5,8 @@
         <servlet-class>servlet.CreateCustomer</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginCustomer</servlet-name>
-        <servlet-class>servlet.LoginCustomer</servlet-class>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>servlet.Login</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CustomerHome</servlet-name>
@@ -21,8 +21,8 @@
         <url-pattern>/CreateCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LoginCustomer</servlet-name>
-        <url-pattern>/LoginCustomer</url-pattern>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CustomerHome</servlet-name>

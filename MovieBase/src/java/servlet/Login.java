@@ -19,7 +19,7 @@ import model.Employee;
  *
  * @author arosi
  */
-public class LoginCustomer extends HttpServlet {
+public class Login extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -56,9 +56,7 @@ public class LoginCustomer extends HttpServlet {
               response.sendRedirect("index.jsp?loginFailed=true");
           }
             
-          }
         }
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
