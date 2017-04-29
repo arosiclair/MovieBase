@@ -10,12 +10,13 @@ import java.util.ArrayList;
  * @author jofrench
  */
 public class Movie {
+    private int id;
     private String name;
     private String genre;
     private float distFee;
     private int numCopies;
     private int rating;
-    private int id;
+    private int numRentals;
     private ArrayList<Actor> actors;
     
     public Movie(){}
@@ -71,5 +72,13 @@ public class Movie {
     }
     public boolean hasActor(Actor a){
         return actors.contains(a);
+    }
+
+    public int getNumRentals() {
+        return numRentals;
+    }
+
+    public void setNumRentals(int numRentals) {
+        this.numRentals = numRentals;
     }
 }
