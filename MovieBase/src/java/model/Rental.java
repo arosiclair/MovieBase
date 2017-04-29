@@ -20,6 +20,15 @@ public class Rental {
     
     public Rental(){}
     
+    public Rental(Date rentDate, Time rentTime, int ID, int employeeId, int movieId, int customerId){
+        this.rentDate=rentDate;
+        this.rentTime=rentTime;
+        this.ID = ID;
+        this.employee.setSSN(employeeId);
+        this.movie.setID(movieId);
+        this.customer.setID(customerId);
+    }
+    
     public Date getRentDate(){
         return rentDate;
     }
