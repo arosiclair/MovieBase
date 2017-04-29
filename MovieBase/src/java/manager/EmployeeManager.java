@@ -28,7 +28,7 @@ public class EmployeeManager {
         try{
             
             String insertSQL = "INSERT INTO Employee(SSN, FirstName, LastName, PhoneNumber, StartDate, hourlyRate, Address, City, State, ZipCode, isManager) " +
-                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement stmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             stmt.setLong(1, SSN);
             stmt.setString(2, firstName);
@@ -53,7 +53,7 @@ public class EmployeeManager {
             
             // Insert correspnding Account
             stmt = connection.prepareStatement("INSERT INTO Account(Username, Password, EmployeeId) " +
-                                                "VALUES(?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+                                                "VALUES(?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, username);
             stmt.setString(2, password);
             stmt.setInt(3, employeeId);
@@ -78,8 +78,8 @@ public class EmployeeManager {
         Connection connection = DBConnectionManager.getConnection();
         try{
             // Lookup the account object
-            String query = "SELECT * FROM Account" +
-                            "WHERE Username = ? AND Password = ?";
+            String query = "SELECT * FROM Account " +
+                            "WHERE Username = ? AND Password = ?;";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
@@ -101,8 +101,8 @@ public class EmployeeManager {
         Connection connection = DBConnectionManager.getConnection();
         try {
             // Lookup the Customer object
-            String query = "SELECT * FROM Employee" +
-                            "WHERE Id = ?";
+            String query = "SELECT * FROM Employee " +
+                            "WHERE SSN = ?;";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, employeeId);
             ResultSet rs = stmt.executeQuery();
