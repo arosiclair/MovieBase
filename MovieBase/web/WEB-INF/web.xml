@@ -24,6 +24,10 @@
         <servlet-name>CreateRental</servlet-name>
         <servlet-class>servlet.CreateRental</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EmployeeHome</servlet-name>
+        <servlet-class>servlet.EmployeeHome</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>CreateRental</servlet-name>
         <url-pattern>/CreateRental</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeHome</servlet-name>
+        <url-pattern>/Employee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -61,6 +61,22 @@ public class Customer {
         this.zipCode = zipCode;
         this.movieQueue = new ArrayList();
     }
+
+    public Customer(int id, String firstName, String lastName, String email, AccountType type, String ccNum, int rating, String phoneNumber, String address, String city, String state, int zipCode) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.type = type;
+        this.CreditCardNumber = ccNum;
+        this.rating = rating;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.movieQueue = new ArrayList();
+    }
     
     public String getFirstName(){
         return firstName;
