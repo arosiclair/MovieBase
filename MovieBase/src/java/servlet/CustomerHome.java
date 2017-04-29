@@ -6,20 +6,18 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import manager.CustomerManager;
-import manager.EmployeeManager;
-import model.Customer;
-import model.Employee;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author arosi
  */
-public class LoginCustomer extends HttpServlet {
+public class CustomerHome extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -32,33 +30,13 @@ public class LoginCustomer extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
-
-        String user = request.getParameter("action");
-        if(user.equals("customer")) {
-          Customer customer = CustomerManager.getCustomer(username, password);
-          if(customer != null){
-              request.getSession().invalidate();
-              request.getSession().setAttribute("customer", customer);
-              response.sendRedirect("Customer");
-          }else{
-              response.sendRedirect("index.jsp?loginFailed=true");
-          }
+        HttpSession session = request.getSession();
+        if(session == null || session.getAttribute("customer") == null){
+            response.sendRedirect("index.jsp?notLoggedIn=true");
+            return;
         }
-        else {
-          Employee employee = EmployeeManager.getEmployee(username, password);
-          if(employee != null) {
-            request.getSession().invalidate();
-            request.getSession().setAttribute("employee", employee);
-              response.sendRedirect("Employee");
-          }else{
-              response.sendRedirect("index.jsp?loginFailed=true");
-          }
-            
-          }
-        }
-        
+        // Forward the user to the main customer page
+        request.getRequestDispatcher("customer.html").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

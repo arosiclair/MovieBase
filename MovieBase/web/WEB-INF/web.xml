@@ -8,6 +8,14 @@
         <servlet-name>LoginCustomer</servlet-name>
         <servlet-class>servlet.LoginCustomer</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CustomerHome</servlet-name>
+        <servlet-class>servlet.CustomerHome</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerWatchList</servlet-name>
+        <servlet-class>servlet.CustomerWatchList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -15,6 +23,14 @@
     <servlet-mapping>
         <servlet-name>LoginCustomer</servlet-name>
         <url-pattern>/LoginCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerHome</servlet-name>
+        <url-pattern>/Customer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerWatchList</servlet-name>
+        <url-pattern>/CustomerWatchList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
