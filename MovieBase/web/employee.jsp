@@ -49,16 +49,10 @@
         </c:choose>
             
         <a class="btn btn-default" href="ListAllMovies">List All Movies</a>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
-        <c:choose>
-          <c:when test="${employee.manager == true}">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
-          </c:when>
-          <c:otherwise>
-          </c:otherwise>
-        </c:choose>
-        
-        
+        <c:if test="${employee.manager}">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
+        </c:if> 
       </div>
     </div>
     
