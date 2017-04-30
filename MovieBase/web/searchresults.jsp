@@ -47,7 +47,7 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
-                <h2>${customer.firstName}'s Watch List</h2>
+                <h2>Search Results for '${query}'</h2>
                 <table>
                     <thead>
                         <th>Name</th>
@@ -56,7 +56,7 @@ and open the template in the editor.
                         <th>Copies Left</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${watchList}" var="movie">
+                        <c:forEach items="${searchResults}" var="movie">
                             <tr>
                                 <td>${movie.name}</td>
                                 <td>${movie.genre}</td>
