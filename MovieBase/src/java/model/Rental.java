@@ -26,7 +26,7 @@ public class Rental {
         this.ID = ID;
         this.employee.setSSN(employeeId);
         this.movie.setID(movieId);
-        this.customer.setID(customerId);
+        this.customer.setId(customerId);
     }
     
     public Date getRentDate(){

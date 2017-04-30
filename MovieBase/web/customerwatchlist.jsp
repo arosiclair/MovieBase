@@ -20,20 +20,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
 
-        <style type="text/css">
-            table {
-                border-collapse: collapse;
-            }
-            th {
-                font-style: bold;
-                background-color: lightgrey;
-            }
-            th, td , table{
-                border: 1px solid black;
-                font-size: 20px;
-                padding: 20px;
-            }
-        </style>
+        <link rel="stylesheet" href="css/results.css">
     </head>
     <body>
         <!-- Header -->
@@ -48,6 +35,12 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
+                <c:if test="${param.addSuccess}">
+                    <div class="alert alert-success" role="alert">Movie successfully added to your watch list.</div>
+                </c:if>
+                <c:if test="${param.addFailed}">
+                    <div class="alert alert-danger" role="alert">Error: the movie could not be added to your watch list.</div>
+                </c:if>
                 <h2>${customer.firstName}'s Watch List</h2>
                 <table>
                     <thead>
@@ -67,6 +60,7 @@ and open the template in the editor.
                         </c:forEach>
                     </tbody>
                 </table>
+                <a class="btn btn-default" href="Customer">Back To Main Menu</a>
             </div>
         </div>
     </body>

@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="/WEB-INF/tlds/custom-functions.tld" prefix="fn" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -20,20 +21,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
 
-        <style type="text/css">
-            table {
-                border-collapse: collapse;
-            }
-            th {
-                font-style: bold;
-                background-color: lightgrey;
-            }
-            th, td , table{
-                border: 1px solid black;
-                font-size: 20px;
-                padding: 20px;
-            }
-        </style>
+        <link rel="stylesheet" href="css/results.css">
     </head>
     <body>
         <!-- Header -->
@@ -55,6 +43,7 @@ and open the template in the editor.
                         <th>Genre</th>
                         <th>Rating</th>
                         <th>Number of Rentals</th>
+                        <th>Add to Watch List</th>
                     </thead>
                     <tbody>
                         <c:forEach items="${bestSellers}" var="movie">
@@ -63,6 +52,17 @@ and open the template in the editor.
                                 <td>${movie.genre}</td>
                                 <td>${movie.rating}</td>
                                 <td>${movie.numRentals}</td>
+                                <td class="text-center">
+                                    <c:choose>
+                                        <c:when test="${fn:containsInt(watchList, movie.id)}">Added</c:when>
+                                        <c:otherwise>
+                                            <form method="POST" action="AddToWatchList">
+                                                <input type="hidden" name="movieId" value="${movie.id}">
+                                                <button class="btn btn-default" type="submit">Add</button>
+                                            </form>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

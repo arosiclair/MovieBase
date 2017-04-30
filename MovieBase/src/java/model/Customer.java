@@ -96,11 +96,11 @@ public class Customer {
     public void setEmail(String email){
         this.email=email;
     }
-    public int getID(){
+    public int getId(){
         return id;
     }
-    public void setID(int ID){
-        this.id=ID;
+    public void setId(int Id){
+        this.id=Id;
     }
     public AccountType getType(){
         return type;

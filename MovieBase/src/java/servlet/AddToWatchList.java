@@ -7,22 +7,19 @@ package servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import manager.CustomerManager;
-import manager.MovieManager;
 import model.Customer;
-import model.Movie;
 
 /**
  *
  * @author arosi
  */
-public class GenreSearch extends HttpServlet {
+public class AddToWatchList extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,15 +38,12 @@ public class GenreSearch extends HttpServlet {
             return;
         }
         
+        int movieId = Integer.parseInt(request.getParameter("movieId"));
         Customer customer = (Customer) session.getAttribute("customer");
-        String genre = request.getParameter("genre");
-        List<Movie> results = MovieManager.searchMoviesByGenre(genre);
-        List<Integer> watchListIds = CustomerManager.getWatchListMovieIds(customer.getId());
-        
-        request.setAttribute("query", genre);
-        request.setAttribute("searchResults", results);
-        request.setAttribute("watchList", watchListIds);
-        request.getRequestDispatcher("searchresults.jsp").forward(request, response);
+        if(CustomerManager.addToWatchList(customer.getId(), movieId))
+            request.getRequestDispatcher("CustomerWatchList?addSuccess=true").forward(request, response);
+        else
+            request.getRequestDispatcher("CustomerWatchList?addFailed=true").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
