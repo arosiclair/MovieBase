@@ -50,6 +50,7 @@ and open the template in the editor.
                 <h2>Comprehensive List of Movies</h2>
                 <table>
                     <thead>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Genre</th>
                         <th>Rating</th>
@@ -58,6 +59,7 @@ and open the template in the editor.
                     <tbody>
                         <c:forEach items="${movieList}" var="movie">
                             <tr>
+                                <td>${movie.ID}</td>
                                 <td>${movie.name}</td>
                                 <td>${movie.genre}</td>
                                 <td>${movie.rating}</td>

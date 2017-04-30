@@ -38,7 +38,6 @@ public class ListAllMovies extends HttpServlet {
         return;
     }
     
-    String query = request.getParameter("query");
     List<Movie> movieList = MovieManager.getAllMovies();
     request.setAttribute("movieList", movieList);
     request.getRequestDispatcher("movielist.jsp").forward(request,response);
