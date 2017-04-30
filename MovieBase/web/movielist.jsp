@@ -20,19 +20,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
         <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script> -->
 
-        <style type="text/css">
-            table {
-                border-collapse: collapse;
-            }
-            th {
-                font-style: bold;
-            }
-            th, td , table{
-                border: 1px solid black;
-                font-size: 20px;
-                padding: 20px;
-            }
-        </style>
+        <link rel="stylesheet" href="css/results.css">
     </head>
     <body>
         <!-- Header -->
@@ -63,8 +51,8 @@ and open the template in the editor.
                                 <td>${movie.id}</td>
                                 <td>${movie.name}</td>
                                 <td>${movie.genre}</td>
-                                <td>${movie.rating}</td>
                                 <td>${movie.distFee}</td>
+                                <td>${movie.rating}</td>
                                 <td>${movie.numCopies}</td>
                                 
                                 <td>
