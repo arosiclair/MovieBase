@@ -73,7 +73,8 @@ public class MovieManager {
             return null;
         }
     }
-
+    
+    // Pass in the result set with the cursor at the Movie row that you want parsed
     private static Movie parseMovie(ResultSet rs) {
         try {
             int id = rs.getInt("Id");
@@ -118,6 +119,23 @@ public class MovieManager {
             newMovie.setRating(rs.getInt("Rating"));
             newMovie.setNumRentals(rs.getInt("NumRentals"));
             return newMovie;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static List<Movie> searchMovies(String query){
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String sqlQuery = "SELECT * FROM Movie WHERE Name LIKE ?";
+            PreparedStatement stmt = connection.prepareStatement(sqlQuery);
+            stmt.setString(1, "%" + query + "%");
+            ResultSet rs = stmt.executeQuery();
+            List<Movie> searchResults = new ArrayList();
+            while(rs.next())
+                searchResults.add(parseMovie(rs));
+            return searchResults;
         } catch (SQLException ex) {
             Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;

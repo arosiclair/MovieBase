@@ -40,6 +40,14 @@
         <servlet-name>BestSellingMovies</servlet-name>
         <servlet-class>servlet.BestSellingMovies</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchMovies</servlet-name>
+        <servlet-class>servlet.SearchMovies</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TextSearch</servlet-name>
+        <servlet-class>servlet.TextSearch</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>AddMovie</servlet-name>
         <url-pattern>/AddMovie</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchMovies</servlet-name>
+        <url-pattern>/SearchMovies</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TextSearch</servlet-name>
+        <url-pattern>/TextSearch</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
