@@ -95,6 +95,20 @@ public class MovieManager {
         }
     }
     
+    public static boolean deleteMovie(int movieId) {
+      try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "DELETE FROM Movie WHERE Id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, movieId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
     // Pass in the result set with the cursor at the Movie row that you want parsed
     private static Movie parseMovie(ResultSet rs) {
         try {

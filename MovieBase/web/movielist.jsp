@@ -69,13 +69,13 @@ and open the template in the editor.
                                 
                                 <td>
                                   <form method="POST" action="EditMovie">
-                                    <div class="form-group">
                                       <button class="btn btn-default" name="movieId" value="${movie.id}">Edit</button>
-                                    </div>
                                   </form>
                                 </td>
                                 <td>
-                                  <button class="btn btn-default">Delete</button>
+                                  <form method="POST" action="DeleteMovie">
+                                    <button class="btn btn-default" name="movieId" value="${movie.id}">Delete</button>
+                                  </form>
                                 </td>
                             </tr>
                         </c:forEach>

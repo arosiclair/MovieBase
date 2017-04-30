@@ -68,6 +68,10 @@
         <servlet-name>SaveEditMovie</servlet-name>
         <servlet-class>servlet.SaveEditMovie</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteMovie</servlet-name>
+        <servlet-class>servlet.DeleteMovie</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -135,6 +139,10 @@
     <servlet-mapping>
         <servlet-name>SaveEditMovie</servlet-name>
         <url-pattern>/SaveEditMovie</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteMovie</servlet-name>
+        <url-pattern>/DeleteMovie</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
