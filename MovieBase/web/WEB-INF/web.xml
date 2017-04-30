@@ -49,13 +49,12 @@
         <servlet-class>servlet.TextSearch</servlet-class>
     </servlet>
     <servlet>
-<<<<<<< HEAD
         <servlet-name>ListAllMovies</servlet-name>
         <servlet-class>servlet.ListAllMovies</servlet-class>
-=======
+    </servlet>
+    <servlet>
         <servlet-name>GenreSearch</servlet-name>
         <servlet-class>servlet.GenreSearch</servlet-class>
->>>>>>> 8fc47f534111a22b1371f432740e561d4cf0f16b
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
@@ -106,13 +105,12 @@
         <url-pattern>/TextSearch</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-<<<<<<< HEAD
         <servlet-name>ListAllMovies</servlet-name>
         <url-pattern>/ListAllMovies</url-pattern>
-=======
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>GenreSearch</servlet-name>
         <url-pattern>/GenreSearch</url-pattern>
->>>>>>> 8fc47f534111a22b1371f432740e561d4cf0f16b
     </servlet-mapping>
     <session-config>
         <session-timeout>
