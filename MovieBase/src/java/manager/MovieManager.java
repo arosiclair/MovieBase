@@ -74,6 +74,7 @@ public class MovieManager {
         }
     }
     
+    
     // Pass in the result set with the cursor at the Movie row that you want parsed
     private static Movie parseMovie(ResultSet rs) {
         try {
@@ -89,7 +90,25 @@ public class MovieManager {
             return null;
         }
     }
-
+    
+    public static List<Movie> getAllMovies() {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT * FROM Movie;";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            
+            List<Movie> movieList = new ArrayList<Movie>();
+            while(rs.next()) {
+              movieList.add(parseMovie(rs));
+            }
+            return movieList;  
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public static List<Movie> getBestSellingMovies() {
         try {
             Connection connection = DBConnectionManager.getConnection();

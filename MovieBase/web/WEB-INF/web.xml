@@ -48,6 +48,10 @@
         <servlet-name>TextSearch</servlet-name>
         <servlet-class>servlet.TextSearch</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListAllMovies</servlet-name>
+        <servlet-class>servlet.ListAllMovies</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>TextSearch</servlet-name>
         <url-pattern>/TextSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListAllMovies</servlet-name>
+        <url-pattern>/ListAllMovies</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
