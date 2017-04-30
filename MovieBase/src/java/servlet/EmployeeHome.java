@@ -36,7 +36,7 @@ public class EmployeeHome extends HttpServlet {
             return;
         }
         // Forward the user to the main employee page
-        request.getRequestDispatcher("employee.html").forward(request, response);
+        request.getRequestDispatcher("employee.jsp").forward(request, response);
   }
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
