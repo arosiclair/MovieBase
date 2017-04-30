@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -32,6 +33,12 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
+                <c:if test="${param.notLoggedIn}">
+                    <div class="alert alert-danger" role="alert">You need to be logged in to do that. Please Log in.</div>
+                </c:if>
+                <c:if test="${param.loginFailed}">
+                    <div class="alert alert-danger" role="alert">Incorrect log in credentials. Try Again.</div>
+                </c:if>
                 <h2>Log In</h2>
                 <form method="POST" action="Login" style="margin-bottom: 20px;">
                     <div class="form-group">

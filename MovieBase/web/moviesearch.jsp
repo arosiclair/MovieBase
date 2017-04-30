@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
     <head>
         <title>Movie Base</title>
@@ -47,9 +48,11 @@
                     <div class="form-group">
                         <label>Search by Genre</label><br>
                         <select class="btn btn-default" name="genre" style="margin-bottom: 10px;">
-                            <option>Genre</option>
+                            <c:forEach items="${genres}" var="genre">
+                                <option value="${genre}">${genre}</option>
+                            </c:forEach>
                         </select><br>
-                        <input class="btn btn-primary" type="submit" disabled>
+                        <input class="btn btn-primary" type="submit">
                     </div>
                 </form>
         </div>

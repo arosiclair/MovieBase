@@ -26,6 +26,7 @@ and open the template in the editor.
             }
             th {
                 font-style: bold;
+                background-color: lightgrey;
             }
             th, td , table{
                 border: 1px solid black;

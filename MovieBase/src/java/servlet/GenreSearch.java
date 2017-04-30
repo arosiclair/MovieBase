@@ -14,12 +14,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import manager.MovieManager;
+import model.Movie;
 
 /**
  *
  * @author arosi
  */
-public class SearchMovies extends HttpServlet {
+public class GenreSearch extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,9 +38,12 @@ public class SearchMovies extends HttpServlet {
             response.sendRedirect("index.jsp?notLoggedIn=true");
             return;
         }
-        List<String> genres = MovieManager.getMovieGenres();
-        request.setAttribute("genres", genres);
-        request.getRequestDispatcher("moviesearch.jsp").forward(request, response);
+
+        String genre = request.getParameter("genre");
+        List<Movie> results = MovieManager.searchMoviesByGenre(genre);
+        request.setAttribute("query", genre);
+        request.setAttribute("searchResults", results);
+        request.getRequestDispatcher("searchresults.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
