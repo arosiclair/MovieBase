@@ -27,7 +27,7 @@ public class EmployeeManager {
         Connection connection = DBConnectionManager.getConnection();
         try{
             
-            String insertSQL = "INSERT INTO Employee(SSN, FirstName, LastName, PhoneNumber, StartDate, hourlyRate, Address, City, State, ZipCode, isManager) " +
+            String insertSQL = "INSERT INTO Employee(SSN, FirstName, LastName, PhoneNumber, StartDate, hourlyRate, Address, City, State, ZipCode, Manager) " +
                                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement stmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, SSN);
@@ -43,12 +43,6 @@ public class EmployeeManager {
             stmt.setInt(10, zipCode);
             stmt.setBoolean(11, isManager);
             stmt.executeUpdate();
-            ResultSet rs = stmt.getGeneratedKeys();
-            int employeeId;
-            if(rs.next())
-               employeeId = rs.getInt(1);
-            else
-                return null;
             Employee newEmployee = new Employee(SSN, firstName, lastName, phoneNumber, today, hourlyRate, address, city, state, zipCode, isManager);
             
             // Insert correspnding Account
@@ -56,9 +50,9 @@ public class EmployeeManager {
                                                 "VALUES(?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, username);
             stmt.setString(2, password);
-            stmt.setInt(3, employeeId);
+            stmt.setString(3, SSN);
             stmt.executeUpdate();
-            rs = stmt.getGeneratedKeys();
+            ResultSet rs = stmt.getGeneratedKeys();
             int accountId;
             if(rs.next())
                accountId = rs.getInt(1);

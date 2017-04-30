@@ -32,6 +32,12 @@
         
     <div class="main">
       <div class="container">
+        <c:if test="${param.createEmployeeSuccess}">
+            <div class="alert alert-success" role="alert">Employee successfully created.</div>
+        </c:if>
+        <c:if test="${param.createEmployeeFailed}">
+            <div class="alert alert-danger" role="alert">Error: there was an issue creating the employee, try again.</div>
+        </c:if>
         <h2>Welcome, ${employee.firstName} ${employee.lastName}</h2>
         <c:choose>
           <c:when test="${employee.manager == true}">
@@ -104,7 +110,7 @@
             <h4 class="modal-title">Add Customer Representative</h4>
           </div>
           <div class="modal-body">
-            <form method="POST" action="CreateCustomerRep" style="padding-bottom: 100px">
+            <form method="POST" action="CreateCustomerRep">
               <div class="form-group">
                 <label>Username</label>
                 <input type="text" class="form-control" name="username">

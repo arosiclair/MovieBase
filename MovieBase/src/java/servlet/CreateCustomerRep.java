@@ -51,13 +51,10 @@ public class CreateCustomerRep extends HttpServlet {
         
         // Add session attributes
         if(newEmployee != null){
-            HttpSession session = request.getSession();
-            session.setAttribute("employee", newEmployee);
-            //Redirect to customer page
-            response.sendRedirect("Employee");
+            response.sendRedirect("Employee?createEmployeeSuccess=true");
         }else{
             // An error occured, redirect back to register page
-            response.sendRedirect("register.html");
+            response.sendRedirect("Employee?createEmployeeFailed=true");
         }
     }
     
