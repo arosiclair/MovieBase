@@ -141,5 +141,38 @@ public class MovieManager {
             return null;
         }
     }
+
+    public static List<Movie> searchMoviesByGenre(String genre) {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT * FROM Movie WHERE Type = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, genre);
+            ResultSet rs = stmt.executeQuery();
+            List<Movie> searchResults = new ArrayList();
+            while(rs.next())
+                searchResults.add(parseMovie(rs));
+            return searchResults;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static List<String> getMovieGenres(){
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT DISTINCT Type FROM Movie";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            List<String> genres = new ArrayList();
+            while(rs.next())
+                genres.add(rs.getString(1));
+            return genres;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     
 }
