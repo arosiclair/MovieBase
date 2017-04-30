@@ -38,8 +38,8 @@ public class EditEmployee extends HttpServlet {
     }
 
     int ssn = Integer.parseInt(request.getParameter("ssn"));
-    Employee employee = EmployeeManager.findEmployee(ssn);
-    request.setAttribute("employee", employee);
+    Employee empToEdit = EmployeeManager.findEmployee(ssn);
+    request.setAttribute("empToEdit", empToEdit);
     request.getRequestDispatcher("editemployee.jsp").forward(request, response);
   
   }

@@ -173,5 +173,24 @@ public class EmployeeManager {
             return null;
         }
     }
+    
+    public static boolean deleteEmployee(String ssn) {
+      try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query1 = "DELETE FROM Account WHERE employeeId = ?;";
+            PreparedStatement stmt1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            stmt1.setString(1, ssn);
+            stmt1.executeUpdate();
+              
+            String query2 = "DELETE FROM Employee WHERE SSN = ?;";
+            PreparedStatement stmt2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+            stmt2.setString(1, ssn);
+            stmt2.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
   
 }

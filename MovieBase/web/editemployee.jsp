@@ -35,40 +35,47 @@
           <form method="POST" action="SaveEditEmployee">
             <div class="form-group">
               <label>First name</label>
-              <input type="text" class="form-control" name="firstName" value="${employee.firstName}">
+              <input type="text" class="form-control" name="firstName" value="${empToEdit.firstName}">
             </div>
             <div class="form-group">
               <label>Last name</label>
-              <input type="text" class="form-control" name="lastName" value="${employee.lastName}">
+              <input type="text" class="form-control" name="lastName" value="${empToEdit.lastName}">
             </div>
             <div class="form-group">
               <label>Hourly Rate</label>
-              <input type="number" class="form-control" name="hourlyRate" value="${employee.hourlyRate}">
+              <input type="number" class="form-control" name="hourlyRate" value="${empToEdit.hourlyRate}">
             </div>
             <div class="form-group">
               <label>Phone Number</label>
-              <input type="number" class="form-control" name="phoneNumber" value="${employee.phoneNumber}">
+              <input type="number" class="form-control" name="phoneNumber" value="${empToEdit.phoneNumber}">
             </div>
             <div class="form-group">
               <label>Address</label>
-              <input type="text" class="form-control" name="address" value="${employee.address}">
+              <input type="text" class="form-control" name="address" value="${empToEdit.address}">
             </div>
             <div class="form-group">
               <label>City</label>
-              <input type="text" class="form-control" name="city" value="${employee.city}">
+              <input type="text" class="form-control" name="city" value="${empToEdit.city}">
             </div>
             <div class="form-group">
               <label>State</label>
-              <input type="text" class="form-control" name="state" value="${employee.state}">
+              <input type="text" class="form-control" name="state" value="${empToEdit.state}">
             </div>
             <div class="form-group">
               <label>Zip Code</label>
-              <input type="number" class="form-control" name="zipCode" value="${employee.zipCode}">
+              <input type="number" class="form-control" name="zipCode" value="${empToEdit.zipCode}">
             </div>
             <div class="checkbox">
               <c:choose>
-                <c:when test="${employee.manager == true}">
-                  <label><input type="checkbox" name="isManager" checked>Manager?</label>
+                <c:when test="${empToEdit.manager == true}">
+                  <c:choose>
+                    <c:when test="${empToEdit.SSN == employee.SSN}">
+                      <label><input type="checkbox" name="isManager" checked disabled>Manager?</label>
+                    </c:when>
+                    <c:otherwise>
+                      <label><input type="checkbox" name="isManager" checked>Manager?</label>
+                    </c:otherwise>
+                  </c:choose>
                 </c:when>
                 <c:otherwise>
                   <label><input type="checkbox" name="isManager">Manager?</label>

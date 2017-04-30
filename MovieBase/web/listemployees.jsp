@@ -48,7 +48,6 @@ and open the template in the editor.
                 <br>
                 <table>
                     <thead>
-                        <th>SSN</th>
                         <th>Name</th>
                         <th>Start Date</th>
                         <th>Hourly Rate</th>
@@ -57,17 +56,16 @@ and open the template in the editor.
                         <th>Role</th>
                     </thead>
                     <tbody>
-                        <c:forEach items="${employees}" var="employee">
+                        <c:forEach items="${employees}" var="emp">
                             <tr>
-                                <td>${employee.SSN}</td>
-                                <td>${employee.firstName} ${employee.lastName}</td>
-                                <td>${employee.startDate}</td>
-                                <td>$${employee.hourlyRate}</td>
-                                <td>${employee.phoneNumber}</td>
-                                <td>${employee.fullAddress}</td>
+                                <td>${emp.firstName} ${emp.lastName}</td>
+                                <td>${emp.startDate}</td>
+                                <td>$${emp.hourlyRate}</td>
+                                <td>${emp.phoneNumber}</td>
+                                <td>${emp.fullAddress}</td>
                                 <td>
                                   <c:choose>
-                                    <c:when test="${employee.manager == true}">
+                                    <c:when test="${emp.manager == true}">
                                       Manager
                                     </c:when>
                                     <c:otherwise>
@@ -77,14 +75,23 @@ and open the template in the editor.
                                 </td>
                                 <td>
                                   <form method="POST" action="EditEmployee">
-                                      <button class="btn btn-default" name="ssn" value="${employee.SSN}">Edit</button>
+                                      <button class="btn btn-default" name="ssn" value="${emp.SSN}" >Edit</button>
                                   </form>
                                 </td>
-                                <td>
-                                  <form method="POST" action="DeleteEmployee">
-                                    <button class="btn btn-danger" name="ssn" value="${employee.SSN}">Delete</button>
-                                  </form>
-                                </td>
+                                
+                                <c:choose>
+                                  <c:when test="${emp.SSN == employee.SSN}">
+                                  </c:when>
+                                  <c:otherwise>
+                                    <td>
+                                      <form method="POST" action="DeleteEmployee">
+                                        <button class="btn btn-danger" name="ssn" value="${emp.SSN}">Delete</button>
+                                      </form>
+                                    </td>
+                                  </c:otherwise>
+                                </c:choose>
+                                      
+                                
                             </tr>
                         </c:forEach>
                     </tbody>
