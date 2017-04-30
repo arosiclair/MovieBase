@@ -11,7 +11,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import manager.RentalManager;
+import model.Employee;
 import model.Rental;
 
 /**
@@ -31,11 +33,21 @@ public class CreateRental extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int movieId = Integer.parseInt(request.getParameter("movieid"));
+        HttpSession session = request.getSession();
+        if(session == null || session.getAttribute("employee") == null){
+            response.sendRedirect("index.jsp?notLoggedIn=true");
+            return;
+        }
+        
+        int movieId = Integer.parseInt(request.getParameter("movieId"));
         int customerId = Integer.parseInt(request.getParameter("customerid"));
         String customerRepId = request.getParameter("customerrepid");
         
         Rental newRental = RentalManager.createRental(customerRepId, movieId, customerId);
+        if(newRental != null)
+            response.sendRedirect("Employee?createRentalSuccess=true&rentalId=" + newRental.getId());
+        else
+            response.sendRedirect("Employee?createRentalFailed=true");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

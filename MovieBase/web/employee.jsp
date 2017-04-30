@@ -35,6 +35,12 @@
         <c:if test="${param.createEmployeeSuccess}">
             <div class="alert alert-success" role="alert">Employee successfully created.</div>
         </c:if>
+        <c:if test="${param.createRentalSuccess}">
+            <div class="alert alert-success" role="alert">Rental order was successfully made. Rental ID: ${param.rentalId}</div>
+        </c:if>
+        <c:if test="${param.createRentalFailed}">
+            <div class="alert alert-danger" role="alert">Error: there was an issue creating the rental, try again.</div>
+        </c:if>
         <c:if test="${param.createEmployeeFailed}">
             <div class="alert alert-danger" role="alert">Error: there was an issue creating the employee, try again.</div>
         </c:if>

@@ -65,6 +65,7 @@ and open the template in the editor.
                                 <td>${customer.phoneNumber}</td>
                                 <td>${customer.regDate}</td>
                                 <td>${customer.fullAddress}</td>
+                                <td><a class="btn btn-default" href="CreateRentalForm?customerId=${customer.id}">Create Order</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
