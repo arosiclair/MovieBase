@@ -76,6 +76,10 @@
         <servlet-name>ViewAllCustomers</servlet-name>
         <servlet-class>servlet.ViewAllCustomers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CreateRentalForm</servlet-name>
+        <servlet-class>servlet.CreateRentalForm</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>ViewAllCustomers</servlet-name>
         <url-pattern>/ViewAllCustomers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateRentalForm</servlet-name>
+        <url-pattern>/CreateRentalForm</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

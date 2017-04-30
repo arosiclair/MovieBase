@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -34,16 +35,20 @@ and open the template in the editor.
     <div class="container">
       <form method="POST" action="CreateRental" style="padding-bottom: 100px">
         <div class="form-group">
-          <label>Movie ID</label>
-          <input type="text" class="form-control" name="movieid">
+          <label>Movie</label><br>
+          <select class="btn btn-default" name="movieId">
+              <c:forEach items="${movies}" var="movie">
+                  <option value="${movie.id}">${movie.name}</option>
+              </c:forEach>
+          </select>
         </div>
         <div class="form-group">
           <label>Customer ID</label>
-          <input type="number" class="form-control" name="customerid">
+          <input type="number" class="form-control" name="customerid" value="${param.customerId}">
         </div>
         <div class="form-group">
           <label>Customer Representative ID</label>
-          <input type="number" class="form-control" name="customerrepid">
+          <input type="number" class="form-control" name="customerrepid" value="${employee.SSN}">
         </div>
         <input class="btn btn-primary pull-right" type="submit">
       </form>

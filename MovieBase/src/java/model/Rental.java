@@ -11,58 +11,66 @@ import java.sql.Time;
  * @author jofrench
  */
 public class Rental {
-    private Date rentDate;
-    private Time rentTime;
-    private int ID;
-    private Employee employee;
-    private Movie movie;
-    private Customer customer;
+
+    private int id;
+    private Date dateTime;
+    private String employeeId;
+    private int customerId;
+    private int movieId;
     
     public Rental(){}
     
-    public Rental(Date rentDate, Time rentTime, int ID, String employeeId, int movieId, int customerId){
-        this.rentDate=rentDate;
-        this.rentTime=rentTime;
-        this.ID = ID;
-        this.employee.setSSN(employeeId);
-        this.movie.setID(movieId);
-        this.customer.setId(customerId);
+    public Rental(int id, String employeeId, int movieId, int customerId){
+        this.id = id;
+        this.employeeId = employeeId;
+        this.customerId = customerId;
+        this.movieId = movieId;
     }
     
-    public Date getRentDate(){
-        return rentDate;
+    public Rental(int id, String employeeId, int movieId, int customerId, Date dateTime){
+        this.id = id;
+        this.employeeId = employeeId;
+        this.customerId = customerId;
+        this.movieId = movieId;
+        this.dateTime = dateTime;
     }
-    public void setRentDate(Date rentDate){
-        this.rentDate=rentDate;
+    
+    public int getId(){
+        return id;
     }
-    public Time getRentTime(){
-        return rentTime;
+    public void setId(int id){
+        this.id = id;
     }
-    public void setRentTime(Time rentTime){
-        this.rentTime=rentTime;
+    
+    public String getEmployeeId() {
+        return employeeId;
     }
-    public int getID(){
-        return ID;
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
     }
-    public void setID(int ID){
-        this.ID=ID;
+
+    public int getCustomerId() {
+        return customerId;
     }
-    public Employee getEmployee(){
-        return employee;
+
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
-    public void setEmployee(Employee employee){
-        this.employee=employee;
+
+    public int getMovieId() {
+        return movieId;
     }
-    public Movie getMovie(){
-        return movie;
+
+    public void setMovieId(int movieId) {
+        this.movieId = movieId;
     }
-    public void setMovie(Movie movie){
-        this.movie=movie;
+    
+    public Date getDateTime() {
+        return dateTime;
     }
-    public Customer getCustomer(){
-        return customer;
-    }
-    public void setCustomer(Customer customer){
-        this.customer=customer;
+
+    public void setDateTime(Date dateTime) {
+        this.dateTime = dateTime;
     }
 }

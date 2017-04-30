@@ -13,15 +13,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import manager.CustomerManager;
-import model.Customer;
+import manager.MovieManager;
 import model.Employee;
+import model.Movie;
 
 /**
  *
  * @author arosi
  */
-public class ViewAllCustomers extends HttpServlet {
+public class CreateRentalForm extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,11 +41,11 @@ public class ViewAllCustomers extends HttpServlet {
         }
         
         Employee employee = (Employee) session.getAttribute("employee");
-        List<Customer> customers = CustomerManager.getAllCustomers();
+        List<Movie> movies = MovieManager.getAllMovies();
         
-        request.setAttribute("employeeSSN", employee.getSSN());
-        request.setAttribute("customers", customers);
-        request.getRequestDispatcher("listcustomers.jsp").forward(request, response);
+        request.setAttribute("employee", employee);
+        request.setAttribute("movies", movies);
+        request.getRequestDispatcher("createrentalform.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

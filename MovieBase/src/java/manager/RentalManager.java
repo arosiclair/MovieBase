@@ -11,7 +11,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Customer;
@@ -27,16 +29,12 @@ public class RentalManager {
         Connection connection = DBConnectionManager.getConnection();
         try{
             // Insert new Customer
-            String insertSQL = "INSERT INTO Rental(employeeId, movieId, customerId, rentDate, rentTime) " +
-                                "VALUES (?, ?, ?, ?, ?)";
+            String insertSQL = "INSERT INTO Rental(EmployeeId, MovieId, CustomerId) " +
+                                "VALUES (?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
             stmt.setString(1, employeeId);
             stmt.setInt(2, movieId);
             stmt.setInt(3, customerId);
-            Date today = new Date(new java.util.Date().getTime());
-            stmt.setDate(4, today);
-            Time now = Time.valueOf(LocalTime.MIN);
-            stmt.setTime(5, now);
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
             int rentalId;
@@ -44,13 +42,14 @@ public class RentalManager {
                rentalId = rs.getInt(1);
             else
                 return null;
-            Rental newRental = new Rental(today, now, rentalId, employeeId, movieId, customerId);
+            Rental newRental = new Rental(rentalId, employeeId, movieId, customerId);
             return newRental;
         }catch (SQLException ex) {
             Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
+    
     public static Rental findRental(int rentalId){
         Connection connection = DBConnectionManager.getConnection();
         try {
@@ -73,13 +72,12 @@ public class RentalManager {
     // Pass in a result set with the cursor at the Rental row you want to parse
     private static Rental parseRental(ResultSet rs){
         try {
-            Date rentDate = rs.getDate("rentDate");
-            Time rentTime = rs.getTime("rentTime");
-            int rentId = rs.getInt("ID");
-            String employeeId = rs.getString("employeeId");
-            int movieId = rs.getInt("movieId");
-            int customerId = rs.getInt("customerId");
-            return new Rental(rentDate, rentTime, rentId, employeeId, movieId, customerId);
+            int rentalId = rs.getInt("Id");
+            String employeeId = rs.getString("EmployeeId");
+            int movieId = rs.getInt("MovieId");
+            int customerId = rs.getInt("CustomerId");
+            Date dateTime = new Date(rs.getTimestamp("Timestamp").getTime());
+            return new Rental(rentalId, employeeId, movieId, customerId, dateTime);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
