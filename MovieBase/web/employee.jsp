@@ -31,7 +31,9 @@
         
     <div class="main">
       <div class="container">
-        <a class="btn btn-default" href="#">List All Movies</a>
+        <h2>Welcome, ${employee.firstName} ${employee.lastName}</h2>
+        <a class="btn btn-default" href="ListAllMovies">List All Movies</a>
+        
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
       </div>
