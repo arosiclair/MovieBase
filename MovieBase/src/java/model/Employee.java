@@ -28,6 +28,22 @@ public class Employee {
 
     public Employee() {
     }
+    
+    public Employee(String SSN, String firstName, String lastName, 
+            String phoneNumber, int hourlyRate, String address, String city ,
+            String state, int zipCode, boolean isManager) {
+        this.SSN = SSN;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phoneNumber = phoneNumber;
+        this.hourlyRate = hourlyRate;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+        this.isManager = isManager;
+      
+    }
 
     public Employee(String SSN, String firstName, String lastName, String phoneNumber,
             Date startDate, int hourlyRate, String address, String city,

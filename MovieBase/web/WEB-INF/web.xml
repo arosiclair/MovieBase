@@ -76,6 +76,22 @@
         <servlet-name>ViewAllCustomers</servlet-name>
         <servlet-class>servlet.ViewAllCustomers</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewAllEmployees</servlet-name>
+        <servlet-class>servlet.ViewAllEmployees</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditEmployee</servlet-name>
+        <servlet-class>servlet.EditEmployee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteEmployee</servlet-name>
+        <servlet-class>servlet.DeleteEmployee</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveEditEmployee</servlet-name>
+        <servlet-class>servlet.SaveEditEmployee</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -151,6 +167,22 @@
     <servlet-mapping>
         <servlet-name>ViewAllCustomers</servlet-name>
         <url-pattern>/ViewAllCustomers</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAllEmployees</servlet-name>
+        <url-pattern>/ViewAllEmployees</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditEmployee</servlet-name>
+        <url-pattern>/EditEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteEmployee</servlet-name>
+        <url-pattern>/DeleteEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveEditEmployee</servlet-name>
+        <url-pattern>/SaveEditEmployee</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
