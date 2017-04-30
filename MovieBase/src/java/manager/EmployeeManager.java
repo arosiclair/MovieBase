@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
@@ -94,7 +96,7 @@ public class EmployeeManager {
     public static Employee findEmployee(int employeeId){
         Connection connection = DBConnectionManager.getConnection();
         try {
-            // Lookup the Customer object
+            // Lookup the Employee object
             String query = "SELECT * FROM Employee " +
                             "WHERE SSN = ?;";
             PreparedStatement stmt = connection.prepareStatement(query);
@@ -110,7 +112,7 @@ public class EmployeeManager {
         }
     }
     
-    // Pass in a result set with the cursor at the customer row you want to parse
+    // Pass in a result set with the cursor at the employee row you want to parse
     private static Employee parseEmployee(ResultSet rs){
         try {
             String SSN = rs.getString("SSN");
@@ -125,6 +127,47 @@ public class EmployeeManager {
             int zipCode = rs.getInt("ZipCode");
             boolean isManager = rs.getBoolean("Manager");
             return new Employee(SSN, firstName, lastName, phoneNumber, startDate, hourlyRate, address, city, state, zipCode, isManager);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static List<Employee> getAllEmployees() {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT * FROM Employee";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            List<Employee> employees = new ArrayList();
+            while(rs.next())
+                employees.add(parseEmployee(rs));
+            return employees;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
+    public static Employee editEmployee(String ssn, String firstName, String lastName, int hourlyRate, String phoneNumber, String address, String city, String state, int zipCode, boolean isManager) {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "UPDATE Employee SET FirstName = ?, LastName = ?, HourlyRate = ?, PhoneNumber = ?, Address = ?, City = ?, State = ?, ZipCode = ?, Manager = ? WHERE SSN = ?;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, firstName);
+            stmt.setString(2, lastName);
+            stmt.setInt(3, hourlyRate);
+            stmt.setString(4, phoneNumber);
+            stmt.setString(5, address);
+            stmt.setString(6, city);
+            stmt.setString(7, state);
+            stmt.setInt(8, zipCode);
+            stmt.setBoolean(9, isManager);
+            stmt.setString(10, ssn);
+            stmt.executeUpdate();
+            
+            Employee employee = new Employee(ssn, firstName, lastName, phoneNumber, hourlyRate, address, city ,state, zipCode, isManager);
+            return employee;
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;

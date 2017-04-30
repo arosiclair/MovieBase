@@ -60,6 +60,7 @@
           <div style="margin-top: 10px;">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
+            <a class="btn btn-primary" href="ViewAllEmployees">View All Employees</a>
           </div>
         </c:if> 
       </div>
