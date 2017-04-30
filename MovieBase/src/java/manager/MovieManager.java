@@ -88,5 +88,40 @@ public class MovieManager {
             return null;
         }
     }
+
+    public static List<Movie> getBestSellingMovies() {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT M.Id, M.Name, M.Type, M.Rating, COUNT(*) AS NumRentals " +
+                    "FROM Movie M, Rental R " +
+                    "WHERE M.Id = R.MovieId " +
+                    "GROUP BY M.Id " +
+                    "ORDER BY NumRentals DESC;";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            ResultSet rs = stmt.executeQuery();
+            List<Movie> bestSellers = new ArrayList();
+            while(rs.next())
+                bestSellers.add(parseBestSellingMovie(rs));
+            return bestSellers;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    private static Movie parseBestSellingMovie(ResultSet rs) {
+        try {
+            Movie newMovie = new Movie();
+            newMovie.setID(rs.getInt("Id"));
+            newMovie.setName(rs.getString("Name"));
+            newMovie.setGenre(rs.getString("Type"));
+            newMovie.setRating(rs.getInt("Rating"));
+            newMovie.setNumRentals(rs.getInt("NumRentals"));
+            return newMovie;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     
 }

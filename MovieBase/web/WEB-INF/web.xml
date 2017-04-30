@@ -36,6 +36,10 @@
         <servlet-name>AddMovie</servlet-name>
         <servlet-class>servlet.AddMovie</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BestSellingMovies</servlet-name>
+        <servlet-class>servlet.BestSellingMovies</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>EmployeeHome</servlet-name>
         <url-pattern>/Employee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BestSellingMovies</servlet-name>
+        <url-pattern>/BestSellingMovies</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>Logout</servlet-name>

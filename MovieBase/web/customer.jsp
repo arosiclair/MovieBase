@@ -45,7 +45,7 @@ and open the template in the editor.
                 <a class="btn btn-default" href="CustomerWatchList">My Watch List</a><br>
                 <a class="btn btn-default" href="#">Rented Movies</a><br>
                 <a class="btn btn-default" href="#">Rental History</a><br>
-                <a class="btn btn-default" href="#">View Best Sellers</a><br>
+                <a class="btn btn-default" href="BestSellingMovies">View Best Sellers</a><br>
                 <a class="btn btn-default" href="#">Search Movies</a><br>
             </div>
         </div>
