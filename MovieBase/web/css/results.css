@@ -1,0 +1,17 @@
+table {
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th {
+    font-style: bold;
+    background-color: lightgrey;
+}
+th, td , table{
+    border: 1px solid black;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.addForm {
+    text-align: center;
+}

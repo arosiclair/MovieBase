@@ -153,7 +153,7 @@ public class CustomerManager {
         return MovieManager.getMovies(movieIds);
     }
 
-    private static List<Integer> getWatchListMovieIds(int customerId) {
+    public static List<Integer> getWatchListMovieIds(int customerId) {
         Connection connection = DBConnectionManager.getConnection();
         String query = "SELECT MovieId FROM Queue WHERE CustomerId = ?;";
         try {
@@ -182,4 +182,19 @@ public class CustomerManager {
             return null;
         }
     }
+
+    public static boolean addToWatchList(int customerId, int movieId) {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "INSERT INTO Queue VALUES(?, ?);";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, customerId);
+            stmt.setInt(2, movieId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }   
 }

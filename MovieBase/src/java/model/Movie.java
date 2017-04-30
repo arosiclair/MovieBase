@@ -61,11 +61,11 @@ public class Movie {
     public void setRating(int rating){
         this.rating=rating;
     }
-    public int getID(){
+    public int getId(){
         return id;
     }
-    public void setID(int ID){
-        this.id=ID;
+    public void setID(int Id){
+        this.id=Id;
     }
     public ArrayList<Actor> getActors(){
         return actors;

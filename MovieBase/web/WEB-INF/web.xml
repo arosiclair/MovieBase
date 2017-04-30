@@ -52,6 +52,10 @@
         <servlet-name>GenreSearch</servlet-name>
         <servlet-class>servlet.GenreSearch</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddToWatchList</servlet-name>
+        <servlet-class>servlet.AddToWatchList</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -103,6 +107,10 @@
     <servlet-mapping>
         <servlet-name>GenreSearch</servlet-name>
         <url-pattern>/GenreSearch</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToWatchList</servlet-name>
+        <url-pattern>/AddToWatchList</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

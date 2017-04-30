@@ -13,7 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import manager.CustomerManager;
 import manager.MovieManager;
+import model.Customer;
 import model.Movie;
 
 /**
@@ -38,9 +40,12 @@ public class BestSellingMovies extends HttpServlet {
             response.sendRedirect("index.jsp?notLoggedIn=true");
             return;
         }
-        
+        Customer customer = (Customer) session.getAttribute("customer");
         List<Movie> bestSellers = MovieManager.getBestSellingMovies();
+        List<Integer> watchListIds = CustomerManager.getWatchListMovieIds(customer.getId());
+        
         request.setAttribute("bestSellers", bestSellers);
+        request.setAttribute("watchList", watchListIds);
         request.getRequestDispatcher("bestsellers.jsp").forward(request, response);
     }
 
