@@ -17,7 +17,7 @@ public class Customer {
     private String lastName;
     private String email;
     private AccountType type;
-    private String CreditCardNumber;
+    private String creditCardNumber;
     private int rating;
     private String phoneNumber;
     private Date regDate;
@@ -36,7 +36,7 @@ public class Customer {
         this.lastName = lastName;
         this.email = email;
         this.type = type;
-        this.CreditCardNumber = ccNum;
+        this.creditCardNumber = ccNum;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.city = city;
@@ -52,7 +52,7 @@ public class Customer {
         this.lastName = lastName;
         this.email = email;
         this.type = type;
-        this.CreditCardNumber = ccNum;
+        this.creditCardNumber = ccNum;
         this.rating = rating;
         this.phoneNumber = phoneNumber;
         this.address = address;
@@ -62,15 +62,16 @@ public class Customer {
         this.movieQueue = new ArrayList();
     }
 
-    public Customer(int id, String firstName, String lastName, String email, AccountType type, String ccNum, int rating, String phoneNumber, String address, String city, String state, int zipCode) {
+    public Customer(int id, String firstName, String lastName, String email, AccountType type, String ccNum, int rating, String phoneNumber, Date regDate, String address, String city, String state, int zipCode) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.type = type;
-        this.CreditCardNumber = ccNum;
+        this.creditCardNumber = ccNum;
         this.rating = rating;
         this.phoneNumber = phoneNumber;
+        this.regDate = regDate;
         this.address = address;
         this.city = city;
         this.state = state;
@@ -108,11 +109,11 @@ public class Customer {
     public void setType(AccountType type){
         this.type=type;
     }
-    public String getCCNum(){
-        return CreditCardNumber;
+    public String getCreditCardNumber(){
+        return creditCardNumber;
     }
-    public void setCCNum(String CCNum){
-        this.CreditCardNumber=CCNum;
+    public void setCreditCardNumber(String CCNum){
+        this.creditCardNumber=CCNum;
     }
     public int getRating(){
         return rating;

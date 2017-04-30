@@ -144,7 +144,7 @@ public class CustomerManager {
             String city = rs.getString("City");
             String state = rs.getString("State");
             int zipCode = rs.getInt("ZipCode");
-            return new Customer(id, firstName, lastName, email, type, ccNum, rating, phoneNumber, address, city, state, zipCode);
+            return new Customer(id, firstName, lastName, email, type, ccNum, rating, phoneNumber, regDate, address, city, state, zipCode);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -201,4 +201,20 @@ public class CustomerManager {
             return false;
         }
     }   
+
+    public static List<Customer> getAllCustomers() {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT * FROM Customer";
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+            List<Customer> customers = new ArrayList();
+            while(rs.next())
+                customers.add(parseCustomer(rs));
+            return customers;
+        } catch (SQLException ex) {
+            Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

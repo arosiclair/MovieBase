@@ -47,11 +47,14 @@
             <h4>Status: Customer Representative</h4>
           </c:otherwise>
         </c:choose>
-            
+        
+        <a class="btn btn-default" href="ViewAllCustomers">View All Customers</a>
         <a class="btn btn-default" href="ListAllMovies">List All Movies</a>
         <c:if test="${employee.manager}">
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
+          <div style="margin-top: 10px;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
+          </div>
         </c:if> 
       </div>
     </div>
