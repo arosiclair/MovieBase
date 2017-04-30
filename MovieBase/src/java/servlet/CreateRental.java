@@ -33,10 +33,9 @@ public class CreateRental extends HttpServlet {
             throws ServletException, IOException {
         int movieId = Integer.parseInt(request.getParameter("movieid"));
         int customerId = Integer.parseInt(request.getParameter("customerid"));
-        int customerRepId = Integer.parseInt(request.getParameter("customerrepid"));
+        String customerRepId = request.getParameter("customerrepid");
         
         Rental newRental = RentalManager.createRental(customerRepId, movieId, customerId);
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

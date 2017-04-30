@@ -93,9 +93,13 @@ public class CustomerManager {
             // If we have a match, return the customer object
             if (rs.next()){
                 Account account = parseAccount(rs);
-                Customer customer = findCustomer(account.getCustomerId());
-                customer.setAccount(account);
-                return customer;
+                if (account != null){
+                    Customer customer = findCustomer(account.getCustomerId());
+                    if(customer != null)
+                        customer.setAccount(account);
+                    return customer;
+                }else
+                    return null;
             }
             else
                 return null;

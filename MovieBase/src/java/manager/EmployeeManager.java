@@ -21,7 +21,7 @@ import model.Employee;
  * @author Stanley
  */
 public class EmployeeManager {
-    public static Employee createEmployee(long SSN, String firstName, String lastName, int hourlyRate,
+    public static Employee createEmployee(String SSN, String firstName, String lastName, int hourlyRate,
                                             String phoneNumber, String address, String city, String state, int zipCode,
                                             boolean isManager, String username, String password){
         Connection connection = DBConnectionManager.getConnection();
@@ -30,7 +30,7 @@ public class EmployeeManager {
             String insertSQL = "INSERT INTO Employee(SSN, FirstName, LastName, PhoneNumber, StartDate, hourlyRate, Address, City, State, ZipCode, isManager) " +
                                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
             PreparedStatement stmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
-            stmt.setLong(1, SSN);
+            stmt.setString(1, SSN);
             stmt.setString(2, firstName);
             stmt.setString(3, lastName);
             stmt.setString(4, phoneNumber);
@@ -119,10 +119,10 @@ public class EmployeeManager {
     // Pass in a result set with the cursor at the customer row you want to parse
     private static Employee parseEmployee(ResultSet rs){
         try {
-            long SSN = rs.getLong("SSN");
+            String SSN = rs.getString("SSN");
             String firstName = rs.getString("FirstName");
             String lastName = rs.getString("LastName");
-            String phoneNumber = rs.getString("Telephone");
+            String phoneNumber = rs.getString("PhoneNumber");
             Date startDate = rs.getDate("StartDate");
             int hourlyRate = rs.getInt("HourlyRate");
             String address = rs.getString("Address");

@@ -150,7 +150,7 @@
                 <input type="number" class="form-control" name="zipcode">
               </div>
               <div class="checkbox">
-                  <label><input type="checkbox" value="" name="isManager">Manager?</label>
+                  <label><input type="checkbox" name="isManager">Manager?</label>
               </div>
               <input class="btn btn-primary pull-right" type="submit">
             </form>

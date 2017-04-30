@@ -32,7 +32,7 @@ public class CreateCustomerRep extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        long SSN = Integer.parseInt(request.getParameter("SSN"));
+        String SSN = request.getParameter("SSN");
         String firstName = request.getParameter("firstname");
         String lastName = request.getParameter("lastname");
         String phoneNumber = request.getParameter("phonenumber");
@@ -45,8 +45,8 @@ public class CreateCustomerRep extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean isManager = false;
-        if(isManagerString.equals(""))
-            isManager=true;
+        if(isManagerString != null)
+            isManager = true;
         Employee newEmployee = EmployeeManager.createEmployee(SSN, firstName, lastName, hourlyRate, phoneNumber, address, city, state, zipCode, isManager, username, password);
         
         // Add session attributes

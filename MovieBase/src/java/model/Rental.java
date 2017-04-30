@@ -20,7 +20,7 @@ public class Rental {
     
     public Rental(){}
     
-    public Rental(Date rentDate, Time rentTime, int ID, int employeeId, int movieId, int customerId){
+    public Rental(Date rentDate, Time rentTime, int ID, String employeeId, int movieId, int customerId){
         this.rentDate=rentDate;
         this.rentTime=rentTime;
         this.ID = ID;

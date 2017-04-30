@@ -23,14 +23,14 @@ import model.Rental;
  * @author jofrench
  */
 public class RentalManager {
-    public static Rental createRental(int employeeId, int movieId, int customerId){
+    public static Rental createRental(String employeeId, int movieId, int customerId){
         Connection connection = DBConnectionManager.getConnection();
         try{
             // Insert new Customer
             String insertSQL = "INSERT INTO Rental(employeeId, movieId, customerId, rentDate, rentTime) " +
                                 "VALUES (?, ?, ?, ?, ?)";
             PreparedStatement stmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
-            stmt.setInt(1, employeeId);
+            stmt.setString(1, employeeId);
             stmt.setInt(2, movieId);
             stmt.setInt(3, customerId);
             Date today = new Date(new java.util.Date().getTime());
@@ -76,7 +76,7 @@ public class RentalManager {
             Date rentDate = rs.getDate("rentDate");
             Time rentTime = rs.getTime("rentTime");
             int rentId = rs.getInt("ID");
-            int employeeId = rs.getInt("employeeId");
+            String employeeId = rs.getString("employeeId");
             int movieId = rs.getInt("movieId");
             int customerId = rs.getInt("customerId");
             return new Rental(rentDate, rentTime, rentId, employeeId, movieId, customerId);
