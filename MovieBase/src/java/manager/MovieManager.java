@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,6 +21,33 @@ import model.Movie;
  * @author arosi
  */
 public class MovieManager {
+  
+    public static Movie createMovie(String name, String type, int rating, int distFee, int numCopies) {
+      Connection connection = DBConnectionManager.getConnection();
+        try{
+            String insertSQL = "INSERT INTO Movie(Name, Type, Rating, DistrFee, NumCopies) " +
+                                "VALUES (?, ?, ?, ?, ?);";
+            PreparedStatement stmt = connection.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.setString(2, type);
+            stmt.setInt(3, rating);
+            stmt.setInt(4, distFee);
+            stmt.setInt(5, numCopies);
+            stmt.executeUpdate();
+            ResultSet rs = stmt.getGeneratedKeys();
+            int movieId;
+            if(rs.next())
+               movieId = rs.getInt(1);
+            else
+                return null;
+            Movie newMovie = new Movie(movieId, name, type, rating, distFee, numCopies);
+            
+            return newMovie;
+        }catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     
     public static List<Movie> getMovies(List<Integer> movieIds) {
         List<Movie> resultList = new ArrayList();
