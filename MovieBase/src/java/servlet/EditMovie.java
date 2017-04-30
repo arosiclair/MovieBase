@@ -6,6 +6,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import model.Movie;
  *
  * @author Stanley
  */
-public class AddMovie extends HttpServlet {
+public class EditMovie extends HttpServlet {
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,19 +38,10 @@ public class AddMovie extends HttpServlet {
           return;
       }
       
-      String name = request.getParameter("name");
-      String type = request.getParameter("genre");
-      int rating = Integer.parseInt(request.getParameter("rating"));
-      int distFee = Integer.parseInt(request.getParameter("distFee"));
-      int numCopies = Integer.parseInt(request.getParameter("numCopies"));
-      
-      Movie newMovie = MovieManager.createMovie(name, type, rating, distFee, numCopies);
-      if (newMovie != null) {
-        response.sendRedirect("Employee");
-      }
-      else {
-        
-      }
+      int movieId = Integer.parseInt(request.getParameter("movieId"));
+      Movie movie = MovieManager.getMovie(movieId);
+      request.setAttribute("movie", movie);
+      request.getRequestDispatcher("editmovie.jsp").forward(request, response);
   }
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -53,17 +53,30 @@ and open the template in the editor.
                         <th>ID</th>
                         <th>Name</th>
                         <th>Genre</th>
+                        <th>Distribution Fee</th>
                         <th>Rating</th>
                         <th>Copies Left</th>
                     </thead>
                     <tbody>
                         <c:forEach items="${movieList}" var="movie">
                             <tr>
-                                <td>${movie.ID}</td>
+                                <td>${movie.id}</td>
                                 <td>${movie.name}</td>
                                 <td>${movie.genre}</td>
                                 <td>${movie.rating}</td>
+                                <td>${movie.distFee}</td>
                                 <td>${movie.numCopies}</td>
+                                
+                                <td>
+                                  <form method="POST" action="EditMovie">
+                                    <div class="form-group">
+                                      <button class="btn btn-default" name="movieId" value="${movie.id}">Edit</button>
+                                    </div>
+                                  </form>
+                                </td>
+                                <td>
+                                  <button class="btn btn-default">Delete</button>
+                                </td>
                             </tr>
                         </c:forEach>
                     </tbody>

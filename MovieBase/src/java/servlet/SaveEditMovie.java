@@ -6,6 +6,7 @@
 package servlet;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,7 @@ import model.Movie;
  *
  * @author Stanley
  */
-public class AddMovie extends HttpServlet {
+public class SaveEditMovie extends HttpServlet {
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,25 +32,26 @@ public class AddMovie extends HttpServlet {
    */
   protected void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-      HttpSession session = request.getSession();
-      if(session == null || session.getAttribute("employee") == null){
-          response.sendRedirect("index.jsp?notLoggedIn=true");
-          return;
-      }
-      
-      String name = request.getParameter("name");
-      String type = request.getParameter("genre");
-      int rating = Integer.parseInt(request.getParameter("rating"));
-      int distFee = Integer.parseInt(request.getParameter("distFee"));
-      int numCopies = Integer.parseInt(request.getParameter("numCopies"));
-      
-      Movie newMovie = MovieManager.createMovie(name, type, rating, distFee, numCopies);
-      if (newMovie != null) {
-        response.sendRedirect("Employee");
-      }
-      else {
-        
-      }
+    HttpSession session = request.getSession();
+    if(session == null || session.getAttribute("employee") == null){
+        response.sendRedirect("index.jsp?notLoggedIn=true");
+        return;
+    }
+    
+    int id = Integer.parseInt(request.getParameter("id"));
+    String name = request.getParameter("name");
+    String type = request.getParameter("genre");
+    int rating = Integer.parseInt(request.getParameter("rating"));
+    float distFee = Float.parseFloat(request.getParameter("distFee"));
+    int numCopies = Integer.parseInt(request.getParameter("numCopies"));
+
+    Movie newMovie = MovieManager.editMovie(id, name, type, rating, distFee, numCopies);
+    if (newMovie != null) {
+      response.sendRedirect("ListAllMovies");
+    }
+    else {
+
+    }
   }
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

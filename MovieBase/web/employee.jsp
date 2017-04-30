@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -32,10 +33,26 @@
     <div class="main">
       <div class="container">
         <h2>Welcome, ${employee.firstName} ${employee.lastName}</h2>
+        <c:choose>
+          <c:when test="${employee.manager == true}">
+            <h4>Status: Manager</h4>
+          </c:when>
+          <c:otherwise>
+            <h4>Status: Customer Representative</h4>
+          </c:otherwise>
+        </c:choose>
+            
         <a class="btn btn-default" href="ListAllMovies">List All Movies</a>
-        
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
+        <c:choose>
+          <c:when test="${employee.manager == true}">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
+          </c:when>
+          <c:otherwise>
+          </c:otherwise>
+        </c:choose>
+        
+        
       </div>
     </div>
     

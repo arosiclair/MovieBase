@@ -21,7 +21,7 @@ public class Movie {
     
     public Movie(){}
 
-    public Movie(int id, String name, String genre, int rating, int distFee, int numCopies) {
+    public Movie(int id, String name, String genre, int rating, float distFee, int numCopies) {
         this.id = id;
         this.name = name;
         this.genre = genre;

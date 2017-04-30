@@ -60,6 +60,14 @@
         <servlet-name>AddToWatchList</servlet-name>
         <servlet-class>servlet.AddToWatchList</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditMovie</servlet-name>
+        <servlet-class>servlet.EditMovie</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SaveEditMovie</servlet-name>
+        <servlet-class>servlet.SaveEditMovie</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -119,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>AddToWatchList</servlet-name>
         <url-pattern>/AddToWatchList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditMovie</servlet-name>
+        <url-pattern>/EditMovie</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SaveEditMovie</servlet-name>
+        <url-pattern>/SaveEditMovie</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

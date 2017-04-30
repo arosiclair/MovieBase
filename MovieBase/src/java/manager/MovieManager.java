@@ -22,7 +22,7 @@ import model.Movie;
  */
 public class MovieManager {
   
-    public static Movie createMovie(String name, String type, int rating, int distFee, int numCopies) {
+    public static Movie createMovie(String name, String type, int rating, float distFee, int numCopies) {
       Connection connection = DBConnectionManager.getConnection();
         try{
             String insertSQL = "INSERT INTO Movie(Name, Type, Rating, DistrFee, NumCopies) " +
@@ -31,7 +31,7 @@ public class MovieManager {
             stmt.setString(1, name);
             stmt.setString(2, type);
             stmt.setInt(3, rating);
-            stmt.setInt(4, distFee);
+            stmt.setFloat(4, distFee);
             stmt.setInt(5, numCopies);
             stmt.executeUpdate();
             ResultSet rs = stmt.getGeneratedKeys();
@@ -57,7 +57,7 @@ public class MovieManager {
         return resultList;
     }
 
-    private static Movie getMovie(Integer movieId) {
+    public static Movie getMovie(Integer movieId) {
         try {
             Connection connection = DBConnectionManager.getConnection();
             String query = "SELECT * FROM Movie WHERE Id = ?;";
@@ -74,6 +74,26 @@ public class MovieManager {
         }
     }
     
+    public static Movie editMovie(Integer movieId, String name, String type, int rating, float distFee, int numCopies) {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "UPDATE Movie SET Name = ?, Type = ?, Rating = ?, DistrFee = ?, NumCopies = ? WHERE Id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, name);
+            stmt.setString(2, type);
+            stmt.setInt(3, rating);
+            stmt.setFloat(4, distFee);
+            stmt.setInt(5, numCopies);
+            stmt.setInt(6, movieId);
+            stmt.executeUpdate();
+            
+            Movie newMovie = new Movie(movieId, name, type, rating, distFee, numCopies);
+            return newMovie;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
     
     // Pass in the result set with the cursor at the Movie row that you want parsed
     private static Movie parseMovie(ResultSet rs) {
