@@ -79,8 +79,6 @@ public class EditCustomer extends HttpServlet {
             response.sendRedirect("ViewAllCustomers?editCustomerSuccess=true");
         else
             response.sendRedirect("ViewAllCustomers?editCustomerFailed=true");
-            
-        
     }
 
     /**

@@ -246,4 +246,18 @@ public class CustomerManager {
             return false;
         }
     }
+
+    public static boolean deleteCustomer(int customerId) {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "DELETE FROM Customer WHERE Id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, customerId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }

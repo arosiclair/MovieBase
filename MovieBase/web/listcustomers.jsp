@@ -48,6 +48,12 @@ and open the template in the editor.
                 <c:if test="${param.editCustomerFailed}">
                     <div class="alert alert-danger" role="alert">Error: there was an issue updating the customer's info.</div>
                 </c:if>
+                <c:if test="${param.deleteSuccess}">
+                    <div class="alert alert-success" role="alert">Customer successfully deleted.</div>
+                </c:if>
+                <c:if test="${param.deleteFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue deleting the customer.</div>
+                </c:if>
                 <h2>All Customers</h2>
                 <table>
                     <thead>
@@ -73,6 +79,7 @@ and open the template in the editor.
                                 <td>${customer.fullAddress}</td>
                                 <td><a class="btn btn-default" href="CreateRentalForm?customerId=${customer.id}">Create Order</a></td>
                                 <td><a class="btn btn-default" href="EditCustomer?customerId=${customer.id}">Edit</a></td>
+                                <td><a class="btn btn-danger" href="DeleteCustomer?customerId=${customer.id}">Delete</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>
