@@ -57,6 +57,7 @@ public class CustomerManager {
             else
                 return null;
             Customer newCustomer = new Customer(firstName, lastName, email, type, ccNum, phoneNumber, address, city, state, zipCode);
+            newCustomer.setId(customerId);
             
             // Insert correspnding Account
             stmt = connection.prepareStatement("INSERT INTO Account(Username, Password, CustomerId) " +
