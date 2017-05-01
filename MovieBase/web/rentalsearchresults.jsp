@@ -36,7 +36,7 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
-                <h2>Search Results for '${query}'</h2>
+                <h2>Rental Search Results for '${query}'</h2>
                 <table>
                     <thead>
                         <th>Rental ID</th>
@@ -45,8 +45,8 @@ and open the template in the editor.
                         <th>Genre</th>
                         <th>Customer ID</th>
                         <th>Employee ID</th>
-                        <th>Timestamp</th>
-                        <th>Return Date</th>
+                        <th>Date Rented</th>
+                        <th>Date Returned</th>
                     </thead>
                     <tbody>
                         <c:forEach items="${searchResults}" var="resultRow">

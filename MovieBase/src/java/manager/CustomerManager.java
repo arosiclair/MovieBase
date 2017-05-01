@@ -11,14 +11,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
 import model.AccountType;
 import model.Customer;
-import model.Employee;
 import model.Movie;
 
 /**
@@ -259,6 +262,32 @@ public class CustomerManager {
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
             return false;
+        }
+    }
+    
+    public static int getSalesReport(String selectDate) {
+      try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT SUM(C.MonthlyFee) AS Total " +
+                            "FROM Customer Cust, Cost C " +
+                            "WHERE Cust.RegDate > ? AND Cust.Type = C.AccType;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+            java.util.Date regDate =  df.parse(selectDate);
+            java.sql.Date sqlRegDate = new java.sql.Date(regDate.getTime());
+            stmt.setDate(1, sqlRegDate);
+            ResultSet rs = stmt.executeQuery();
+            int salesTotal = -1;
+            if (rs.next()) {
+              salesTotal = rs.getInt("Total");
+            }
+            return salesTotal;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return -2;
+        } catch(ParseException ex) {
+            ex.printStackTrace();
+            return -3;
         }
     }
 }

@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -78,7 +79,7 @@
                 <label>Obtain Sales Report For: </label>
                   <div class="form-group">
                     <div class="input-group date" id="datepicker">
-                      <input type="text" class="form-control" name="month" />
+                      <input type="text" class="form-control" name="date" />
                       <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
                     </div>
                   </div>
@@ -94,8 +95,20 @@
                 <input class="btn btn-primary" type="submit">
               </div>
             </form>
+            <c:if test="${param.salesReportError}">
+              <div class="alert alert-danger alert-dismissable fade in" role="alert">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Error: there was an issue obtaining the sales report, try again.
+              </div>
+            </c:if>
+            <c:if test="${not empty salesTotal}">
+              <div class="alert alert-info alert-dismissable fade in">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                Overall Income Since <fmt:formatDate value="${selectedDate}" type="date" dateStyle="medium" />
+              : <strong>$${salesTotal}</strong>
+              </div>
+            </c:if>
             
-        
           </div>
         </c:if> 
       </div>

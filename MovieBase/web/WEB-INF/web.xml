@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <listener>
+        <listener-class>
+            init.MyContextListener
+        </listener-class>
+    </listener>
     <servlet>
         <servlet-name>CreateCustomer</servlet-name>
         <servlet-class>servlet.CreateCustomer</servlet-class>
@@ -107,6 +112,10 @@
     <servlet>
         <servlet-name>DeleteCustomer</servlet-name>
         <servlet-class>servlet.DeleteCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SalesReport</servlet-name>
+        <servlet-class>servlet.SalesReport</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
@@ -216,14 +225,11 @@
         <servlet-name>DeleteCustomer</servlet-name>
         <url-pattern>/DeleteCustomer</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SalesReport</servlet-name>
+        <url-pattern>/SalesReport</url-pattern>
+    </servlet-mapping>
     <session-config>
-        <session-timeout>
-            30
-        </session-timeout>
+        <session-timeout>30</session-timeout>
     </session-config>
-    <listener>
-        <listener-class>
-            init.MyContextListener
-        </listener-class>
-    </listener>
 </web-app>
