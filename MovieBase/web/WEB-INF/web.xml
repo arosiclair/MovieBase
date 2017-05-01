@@ -96,6 +96,10 @@
         <servlet-name>SaveEditEmployee</servlet-name>
         <servlet-class>servlet.SaveEditEmployee</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditCustomer</servlet-name>
+        <servlet-class>servlet.EditCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -191,6 +195,10 @@
     <servlet-mapping>
         <servlet-name>SaveEditEmployee</servlet-name>
         <url-pattern>/SaveEditEmployee</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCustomer</servlet-name>
+        <url-pattern>/EditCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
