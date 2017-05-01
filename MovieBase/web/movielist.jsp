@@ -36,6 +36,9 @@ and open the template in the editor.
         <div class="main">
             <div class="container">
                 <h2>Comprehensive List of Movies</h2>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
+                <br>
+                <br>
                 <table>
                     <thead>
                         <th>ID</th>
@@ -62,7 +65,7 @@ and open the template in the editor.
                                 </td>
                                 <td>
                                   <form method="POST" action="DeleteMovie">
-                                    <button class="btn btn-default" name="movieId" value="${movie.id}">Delete</button>
+                                    <button class="btn btn-danger" name="movieId" value="${movie.id}">Delete</button>
                                   </form>
                                 </td>
                             </tr>
@@ -72,5 +75,43 @@ and open the template in the editor.
                 <a class="btn btn-default" href="Employee">Back To Main Menu</a>  
             </div>
         </div>
+        
+        <!-- Add Movie Modal -->
+    <div id="addMovie" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Add Movie</h4>
+          </div>
+          <div class="modal-body">
+            <form method="POST" action="AddMovie" style="padding-bottom: 40px">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" name="name">
+              </div>
+              <div class="form-group">
+                <label>Genre</label>
+                <input type="text" class="form-control" name="genre">
+              </div>
+              <div class="form-group">
+                <label>Rating</label>
+                <input type="number" class="form-control" name="rating">
+              </div>
+              <div class="form-group">
+                <label>Distribution Fee</label>
+                <input type="number" class="form-control" name="distFee">
+              </div>
+              <div class="form-group">
+                <label>Number of Copies</label>
+                <input type="number" class="form-control" name="numCopies">
+              </div>
+              <input class="btn btn-primary pull-right" type="submit">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+        
     </body>
 </html>

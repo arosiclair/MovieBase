@@ -55,12 +55,14 @@
         </c:choose>
         
         <a class="btn btn-default" href="ViewAllCustomers">View All Customers</a>
-        <a class="btn btn-default" href="ListAllMovies">List All Movies</a>
+        <a class="btn btn-default" href="ListAllMovies">View All Movies</a>
         <c:if test="${employee.manager}">
           <div style="margin-top: 10px;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
+<!--            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>-->
             <a class="btn btn-primary" href="ViewAllEmployees">View All Employees</a>
+            <br>
+            <br>
             <form method="GET" action="RentalSearch">
               <div class="form-group">
                 <label>Search Rentals By: </label><br>
