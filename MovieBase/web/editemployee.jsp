@@ -70,7 +70,7 @@
                 <c:when test="${empToEdit.manager == true}">
                   <c:choose>
                     <c:when test="${empToEdit.SSN == employee.SSN}">
-                      <label><input type="checkbox" name="isManager" checked disabled>Manager?</label>
+                      <label class="hidden"><input class="hidden" type="checkbox" name="isManager" checked>Manager?</label>
                     </c:when>
                     <c:otherwise>
                       <label><input type="checkbox" name="isManager" checked>Manager?</label>
@@ -83,7 +83,7 @@
               </c:choose>
                 
             </div>
-            <button class="btn btn-primary pull-right" type="submit" name="ssn" value="${employee.SSN}">Finish Edit</button>
+            <button class="btn btn-primary pull-right" type="submit" name="ssn" value="${empToEdit.SSN}">Finish Edit</button>
           </form>
       </div>
     </div>
