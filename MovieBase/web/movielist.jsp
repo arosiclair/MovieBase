@@ -35,6 +35,25 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
+                <c:if test="${param.createMovieSuccess}">
+                    <div class="alert alert-success" role="alert">Movie was successfully added.</div>
+                </c:if>
+                <c:if test="${param.createMovieFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue adding the movie, try again.</div>
+                </c:if>
+                <c:if test="${param.editMovieSuccess}">
+                    <div class="alert alert-success" role="alert">Movie was successfully edited.</div>
+                </c:if>
+                <c:if test="${param.editMovieFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue editing the movie, try again.</div>
+                </c:if>
+                <c:if test="${param.deleteMovieSuccess}">
+                    <div class="alert alert-success" role="alert">Movie was successfully deleted.</div>
+                </c:if>
+                <c:if test="${param.deleteMovieFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue deleting the movie, try again.</div>
+                </c:if>
+                    
                 <h2>Comprehensive List of Movies</h2>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
                 <br>

@@ -11,6 +11,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker3.css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"></script>
         <!-- Material Design Lite
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
@@ -32,17 +34,11 @@
         
     <div class="main">
       <div class="container">
-        <c:if test="${param.createEmployeeSuccess}">
-            <div class="alert alert-success" role="alert">Employee successfully created.</div>
-        </c:if>
         <c:if test="${param.createRentalSuccess}">
             <div class="alert alert-success" role="alert">Rental order was successfully made. Rental ID: ${param.rentalId}</div>
         </c:if>
         <c:if test="${param.createRentalFailed}">
             <div class="alert alert-danger" role="alert">Error: there was an issue creating the rental, try again.</div>
-        </c:if>
-        <c:if test="${param.createEmployeeFailed}">
-            <div class="alert alert-danger" role="alert">Error: there was an issue creating the employee, try again.</div>
         </c:if>
         <h2>Welcome, ${employee.firstName} ${employee.lastName}</h2>
         <c:choose>
@@ -76,6 +72,30 @@
                   <input class="btn btn-primary" type="submit">
               </div>
             </form>
+            
+            <form method="GET" action="SalesReport">
+              <div class="form-group">
+                <label>Obtain Sales Report For: </label>
+                  <div class="form-group">
+                    <div class="input-group date" id="datepicker">
+                      <input type="text" class="form-control" name="month" />
+                      <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                    </div>
+                  </div>
+                <script type="text/javascript">
+                    $(function () {
+                        $('#datepicker').datepicker( {
+                          format: "yyyy-mm-dd",
+                          viewMode: "months",
+                          minViewMode: "months"
+                        });
+                    });
+                </script>
+                <input class="btn btn-primary" type="submit">
+              </div>
+            </form>
+            
+        
           </div>
         </c:if> 
       </div>

@@ -42,6 +42,25 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container-fluid">
+                <c:if test="${param.createEmployeeSuccess}">
+                    <div class="alert alert-success" role="alert">Employee successfully created.</div>
+                </c:if>
+                <c:if test="${param.createEmployeeFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue creating the employee, try again.</div>
+                </c:if>
+                <c:if test="${param.editEmployeeSuccess}">
+                    <div class="alert alert-success" role="alert">Employee successfully edited.</div>
+                </c:if>
+                <c:if test="${param.editEmployeeFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue editing the employee, try again.</div>
+                </c:if>
+                <c:if test="${param.deleteEmployeeSuccess}">
+                    <div class="alert alert-success" role="alert">Employee successfully deleted.</div>
+                </c:if>
+                <c:if test="${param.deleteEmployeeFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue deleting the employee, try again.</div>
+                </c:if>
+                    
                 <h2>All Employees</h2>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createEmployee">Add Employee</button>
                 <br>

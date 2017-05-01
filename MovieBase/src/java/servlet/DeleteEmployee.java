@@ -39,10 +39,10 @@ public class DeleteEmployee extends HttpServlet {
     String ssn = request.getParameter("ssn");
     boolean isDeleted = EmployeeManager.deleteEmployee(ssn);
     if (isDeleted) {
-      response.sendRedirect("ViewAllEmployees");
+      response.sendRedirect("ViewAllEmployees?deleteEmployeeSuccess=true");
     }
     else {
-      
+      response.sendRedirect("ViewAllEmployees?deleteEmployeeFailed=true");
     }
   }
 

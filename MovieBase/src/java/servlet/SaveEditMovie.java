@@ -47,10 +47,10 @@ public class SaveEditMovie extends HttpServlet {
 
     Movie newMovie = MovieManager.editMovie(id, name, type, rating, distFee, numCopies);
     if (newMovie != null) {
-      response.sendRedirect("ListAllMovies");
+      response.sendRedirect("ListAllMovies?editMovieSuccess=true");
     }
     else {
-
+      response.sendRedirect("ListAllMovies?editMovieFailed=true");
     }
   }
 

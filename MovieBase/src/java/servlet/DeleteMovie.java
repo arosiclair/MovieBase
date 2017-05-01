@@ -40,10 +40,10 @@ public class DeleteMovie extends HttpServlet {
     int movieId = Integer.parseInt(request.getParameter("movieId"));
     boolean isDeleted = MovieManager.deleteMovie(movieId);
     if (isDeleted) {
-      response.sendRedirect("ListAllMovies");
+      response.sendRedirect("ListAllMovies?deleteMovieSuccess=true");
     }
     else {
-      
+      response.sendRedirect("ListAllMovies?deleteMovieFailed=true");
     }
   }
 

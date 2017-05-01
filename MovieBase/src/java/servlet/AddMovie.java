@@ -45,10 +45,10 @@ public class AddMovie extends HttpServlet {
       
       Movie newMovie = MovieManager.createMovie(name, type, rating, distFee, numCopies);
       if (newMovie != null) {
-        response.sendRedirect("Employee");
+        response.sendRedirect("ListAllMovies?createMovieSuccess=true");
       }
       else {
-        
+        response.sendRedirect("ListAllMovies?createMovieFailed=true");
       }
   }
 

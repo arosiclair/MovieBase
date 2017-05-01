@@ -53,10 +53,10 @@ public class SaveEditEmployee extends HttpServlet {
 
     Employee employee = EmployeeManager.editEmployee(ssn, firstName, lastName, hourlyRate, phoneNumber, address, city, state, zipCode, isManager);
     if (employee != null) {
-      response.sendRedirect("ViewAllEmployees");
+      response.sendRedirect("ViewAllEmployees?editEmployeeSuccess=true");
     }
     else {
-
+      response.sendRedirect("ViewAllEmployees?editEmployeeFailed=true");
     }
   }
 
