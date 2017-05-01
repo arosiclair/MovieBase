@@ -82,6 +82,7 @@
               <label>Zip Code</label>
               <input type="number" class="form-control" name="zipCode" value="${customer.zipCode}">
             </div>
+              <a class="btn btn-default" href="ViewAllCustomers">Back To Customers</a>  
               <button class="btn btn-primary pull-right" type="submit" name="customerId" value="${customer.id}">Submit</button>
           </form>
       </div>

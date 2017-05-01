@@ -67,6 +67,7 @@ and open the template in the editor.
                         </c:forEach>
                     </tbody>
                 </table>
+                <a class="btn btn-default" href="SearchMovies">Back To Search</a>  
             </div>
         </div>
     </body>

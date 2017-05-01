@@ -52,6 +52,7 @@ and open the template in the editor.
         </div>
         <input class="btn btn-primary pull-right" type="submit">
       </form>
+      <a class="btn btn-default" href="ViewAllCustomers">Back To Customers</a>  
     </div>
   </div>
     </body>
