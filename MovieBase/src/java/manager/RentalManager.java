@@ -84,7 +84,9 @@ public class RentalManager {
     public static List<HashMap<String,String>> getRentalByMovie(String movieName) {
       Connection connection = DBConnectionManager.getConnection();
       try {
-          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Type AS Genre, R.CustomerId AS CustomerId " + 
+          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Name as MovieName, M.Type AS Genre, " + 
+                                "R.CustomerId AS CustomerId, R.EmployeeId as EmployeeId, " + 
+                                "R.TimeStamp as TimeStamp, R.ReturnDate as ReturnDate " + 
                           "FROM Rental R, Movie M " +
                           "WHERE M.Name = ? AND M.Id = R.MovieId;";
           PreparedStatement stmt = connection.prepareStatement(query);
@@ -107,7 +109,9 @@ public class RentalManager {
     public static List<HashMap<String,String>> getRentalByMovieType(String movieType) {
       Connection connection = DBConnectionManager.getConnection();
       try {
-          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Type AS Genre, R.CustomerId AS CustomerId " + 
+          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Name as MovieName, M.Type AS Genre, " + 
+                                "R.CustomerId AS CustomerId, R.EmployeeId as EmployeeId, " + 
+                                "R.TimeStamp as TimeStamp, R.ReturnDate as ReturnDate " + 
                           "FROM Rental R, Movie M " +
                           "WHERE M.Type = ? AND M.Id = R.MovieId;";
           PreparedStatement stmt = connection.prepareStatement(query);
@@ -130,7 +134,9 @@ public class RentalManager {
     public static List<HashMap<String,String>> getRentalByCustFirstName(String firstName) {
       Connection connection = DBConnectionManager.getConnection();
       try {
-          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Type AS Genre, R.CustomerId AS CustomerId " + 
+          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Name as MovieName, M.Type AS Genre, " + 
+                                "R.CustomerId AS CustomerId, R.EmployeeId as EmployeeId, " + 
+                                "R.TimeStamp as TimeStamp, R.ReturnDate as ReturnDate " + 
                           "FROM Rental R, Movie M, Customer C " +
                           "WHERE C.FirstName = ? AND M.Id = R.MovieId AND C.Id = R.CustomerId;";
           PreparedStatement stmt = connection.prepareStatement(query);
@@ -153,7 +159,9 @@ public class RentalManager {
     public static List<HashMap<String,String>> getRentalByCustLastName(String lastName) {
       Connection connection = DBConnectionManager.getConnection();
       try {
-          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Type AS Genre, R.CustomerId AS CustomerId " + 
+          String query = "SELECT R.Id AS RentalId, M.Id AS MovieId, M.Name as MovieName, M.Type AS Genre, " + 
+                                "R.CustomerId AS CustomerId, R.EmployeeId as EmployeeId, " + 
+                                "R.TimeStamp as TimeStamp, R.ReturnDate as ReturnDate " +  
                           "FROM Rental R, Movie M, Customer C " +
                           "WHERE C.LastName = ? AND M.Id = R.MovieId AND C.Id = R.CustomerId;";
           PreparedStatement stmt = connection.prepareStatement(query);
@@ -181,8 +189,18 @@ public class RentalManager {
         
         searchResult.put("Rental ID", rs.getString("RentalId"));
         searchResult.put("Movie ID", rs.getString("MovieId"));
+        searchResult.put("Movie Name", rs.getString("MovieName"));
         searchResult.put("Genre", rs.getString("Genre"));
         searchResult.put("Customer ID", rs.getString("CustomerId"));
+        searchResult.put("Employee ID", rs.getString("EmployeeId"));
+        Date timestamp = new Date(rs.getTimestamp("Timestamp").getTime());
+        searchResult.put("Timestamp", timestamp.toString());
+        Date returnDate = rs.getDate("ReturnDate");
+        if (returnDate == null) {
+          searchResult.put("Return Date", null);
+        } else {
+          searchResult.put("Return Date", returnDate.toString());
+        }
         
         return searchResult;
       } catch (SQLException ex) {

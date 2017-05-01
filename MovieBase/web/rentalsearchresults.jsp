@@ -41,8 +41,12 @@ and open the template in the editor.
                     <thead>
                         <th>Rental ID</th>
                         <th>Movie ID</th>
+                        <th>Movie Name</th>   
                         <th>Genre</th>
                         <th>Customer ID</th>
+                        <th>Employee ID</th>
+                        <th>Timestamp</th>
+                        <th>Return Date</th>
                     </thead>
                     <tbody>
                         <c:forEach items="${searchResults}" var="resultRow">
