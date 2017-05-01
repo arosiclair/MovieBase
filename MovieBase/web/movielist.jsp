@@ -69,6 +69,7 @@ and open the template in the editor.
                         </c:forEach>
                     </tbody>
                 </table>
+                <a class="btn btn-default" href="Employee">Back To Main Menu</a>  
             </div>
         </div>
     </body>

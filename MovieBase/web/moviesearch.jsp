@@ -34,27 +34,27 @@
         </header>
 
         <!-- Main -->
-        <div class="main">
-            <div class="container">
-                <h2>Search Movies</h2>
-                <form method="GET" action="TextSearch">
-                    <div class="form-group">
-                        <label>Search by Text</label>
-                        <input class="form-control" name="query" style="margin-bottom: 10px;">
-                        <input class="btn btn-primary" type="submit">
-                    </div>
-                </form>
-                <form method="GET" action="GenreSearch">
-                    <div class="form-group">
-                        <label>Search by Genre</label><br>
-                        <select class="btn btn-default" name="genre" style="margin-bottom: 10px;">
-                            <c:forEach items="${genres}" var="genre">
-                                <option value="${genre}">${genre}</option>
-                            </c:forEach>
-                        </select><br>
-                        <input class="btn btn-primary" type="submit">
-                    </div>
-                </form>
+        <div class="container">
+            <h2>Search Movies</h2>
+            <form method="GET" action="TextSearch">
+                <div class="form-group">
+                    <label>Search by Text</label>
+                    <input class="form-control" name="query" style="margin-bottom: 10px;">
+                    <input class="btn btn-primary" type="submit">
+                </div>
+            </form>
+            <form method="GET" action="GenreSearch">
+                <div class="form-group">
+                    <label>Search by Genre</label><br>
+                    <select class="btn btn-default" name="genre" style="margin-bottom: 10px;">
+                        <c:forEach items="${genres}" var="genre">
+                            <option value="${genre}">${genre}</option>
+                        </c:forEach>
+                    </select><br>
+                    <input class="btn btn-primary" type="submit">
+                </div>
+            </form>
+            <a class="btn btn-default" href="Customer">Back To Main Menu</a>
         </div>
     </body>
 </html>

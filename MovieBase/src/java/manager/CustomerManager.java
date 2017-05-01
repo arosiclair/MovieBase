@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 import model.Account;
 import model.AccountType;
 import model.Customer;
+import model.Employee;
 import model.Movie;
 
 /**
@@ -56,6 +57,7 @@ public class CustomerManager {
             else
                 return null;
             Customer newCustomer = new Customer(firstName, lastName, email, type, ccNum, phoneNumber, address, city, state, zipCode);
+            newCustomer.setId(customerId);
             
             // Insert correspnding Account
             stmt = connection.prepareStatement("INSERT INTO Account(Username, Password, CustomerId) " +
@@ -215,6 +217,48 @@ public class CustomerManager {
         } catch (SQLException ex) {
             Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }
+    }
+
+    public static boolean editCustomer(int customerId, String firstName, String lastName, 
+            String email, String type, String creditCardNumber, int rating, 
+            String phoneNumber, String address, String city, String state, int zipCode) {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "UPDATE Customer SET FirstName = ?, LastName = ?, Email = ?, Type = ?, CreditCardNumber = ?, Rating = ?, PhoneNumber = ?, address = ?, City = ?, State = ?, ZipCode = ? WHERE Id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setString(1, firstName);
+            stmt.setString(2, lastName);
+            stmt.setString(3, email);
+            stmt.setString(4, type);
+            stmt.setString(5, creditCardNumber);
+            stmt.setInt(6, rating);
+            stmt.setString(7, phoneNumber);
+            stmt.setString(8, address);
+            stmt.setString(9, city);
+            stmt.setString(10, state);
+            stmt.setInt(11, zipCode);
+            stmt.setInt(12, customerId);
+            stmt.executeUpdate();
+            
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+
+    public static boolean deleteCustomer(int customerId) {
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "DELETE FROM Customer WHERE Id = ?;";
+            PreparedStatement stmt = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            stmt.setInt(1, customerId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 }
