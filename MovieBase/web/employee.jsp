@@ -61,6 +61,19 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createCustRep">Add Customer Representative</button>
             <a class="btn btn-primary" href="ViewAllEmployees">View All Employees</a>
+            <form method="GET" action="RentalSearch">
+              <div class="form-group">
+                <label>Search Rentals By: </label><br>
+                  <select class="btn btn-default" name="searchBy" style="margin-bottom: 10px;">
+                    <option value="movie">Movie Name</option>
+                    <option value="genre">Genre</option>
+                    <option value="firstName">Customer First Name</option>
+                    <option value="lastName">Customer Last Name</option>
+                  </select>
+                  <input class="form-control" name="query" style="margin-bottom: 10px;">
+                  <input class="btn btn-primary" type="submit">
+              </div>
+            </form>
           </div>
         </c:if> 
       </div>
