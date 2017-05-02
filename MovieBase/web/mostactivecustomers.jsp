@@ -46,7 +46,7 @@ and open the template in the editor.
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Rating</th>
-                        <th>Number of Orders</th>
+                        <th>Number of Rentals Made</th>
                     </thead>
                     <tbody>
                         <c:forEach items="${custList}" var="resultRow">

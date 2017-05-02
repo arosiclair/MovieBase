@@ -52,10 +52,10 @@
         </c:choose>
         
         <a class="btn btn-info" href="ViewAllCustomers">View All Customers</a>
+        <a class="btn btn-info" href="ViewAllEmployees">View All Employees</a>
         
         <c:if test="${employee.manager}">
             <a class="btn btn-info" href="ListAllMovies">View All Movies</a>
-            <a class="btn btn-info" href="ViewAllEmployees">View All Employees</a>
             <br>
             <br>
             <form method="GET" action="RentalSearch">

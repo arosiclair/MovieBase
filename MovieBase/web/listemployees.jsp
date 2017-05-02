@@ -63,7 +63,8 @@ and open the template in the editor.
                 <c:if test="${param.deleteEmployeeFailed}">
                     <div class="alert alert-danger" role="alert">Error: there was an issue deleting the employee, try again.</div>
                 </c:if>
-                    
+                
+                <c:if test="${employee.manager}">
                 <h2>All Employees</h2>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createEmployee">Add Employee</button>
                 <br>
@@ -72,11 +73,14 @@ and open the template in the editor.
                   <button type="submit" class="btn btn-info">Most Active Customer Representatives</button>
                 </form>
                 <br>
+                </c:if>
                 <table>
                     <thead>
                         <th>Name</th>
                         <th>Start Date</th>
-                        <th>Hourly Rate</th>
+                        <c:if test="${employee.manager}">
+                          <th>Hourly Rate</th>
+                        </c:if>
                         <th>Phone Number</th>
                         <th>Address</th>
                         <th>Role</th>
@@ -86,7 +90,9 @@ and open the template in the editor.
                             <tr>
                                 <td>${emp.firstName} ${emp.lastName}</td>
                                 <td>${emp.startDate}</td>
-                                <td>$${emp.hourlyRate}</td>
+                                <c:if test="${employee.manager}">
+                                  <td>$${emp.hourlyRate}</td>
+                                </c:if>
                                 <td>${emp.phoneNumber}</td>
                                 <td>${emp.fullAddress}</td>
                                 <td>
@@ -99,6 +105,9 @@ and open the template in the editor.
                                     </c:otherwise>
                                   </c:choose>
                                 </td>
+                                
+                                <c:if test="${employee.manager}">
+                                  
                                 <td>
                                   <form method="POST" action="EditEmployee">
                                       <button class="btn btn-default" name="ssn" value="${emp.SSN}" >Edit</button>
@@ -116,6 +125,8 @@ and open the template in the editor.
                                     </td>
                                   </c:otherwise>
                                 </c:choose>
+                                    
+                                </c:if>
                                       
                                 
                             </tr>
