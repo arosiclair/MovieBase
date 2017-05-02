@@ -16,6 +16,7 @@ import java.text.SimpleDateFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -299,5 +300,58 @@ public class CustomerManager {
             ex.printStackTrace();
             return -3;
         }
+    }
+    
+    public static List<HashMap<String,String>> getMostActiveCustomers() {
+      // First create view of all customers and number of rentals made
+      try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query1 = "CREATE VIEW CountOrders(CustId, NumOrders) AS " +
+                            "SELECT R.CustomerId, COUNT(*) " +
+                            "FROM Rental R " +
+                            "GROUP BY R.CustomerId;";
+            PreparedStatement stmt1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            stmt1.executeUpdate();
+        } catch (SQLException ex) {
+            // View already exists
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      // Query for the cusomer rep with the most rentals handled
+      try {
+        Connection connection = DBConnectionManager.getConnection();
+        String query2 = "SELECT O.CustId, C.FirstName, C.LastName, C.Rating, O.NumOrders " + 
+                        "FROM CountOrders O, Customer C " + 
+                        "WHERE O.CustId = C.Id AND O.NumOrders >= (SELECT MAX(D.NumOrders) FROM CountOrders D);";
+        PreparedStatement stmt2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+        ResultSet rs = stmt2.executeQuery();
+        
+        List<HashMap<String,String>> custRepList = new ArrayList<HashMap<String,String>>();
+        while(rs.next()) {
+          custRepList.add( parseCountOrdersAsMap(rs) );
+        }
+
+        return custRepList;
+      }
+      catch (SQLException ex) {
+        Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+      }
+    }
+    
+    private static HashMap<String,String> parseCountOrdersAsMap(ResultSet rs) {
+      try {
+        // LinkedHashMap ensures order
+        HashMap<String,String> result = new LinkedHashMap<String, String>();
+        result.put("CustRepId", rs.getString("CustId"));
+        result.put("CustRepFirstName", rs.getString("FirstName"));
+        result.put("CustRepLastName", rs.getString("LastName"));
+        result.put("Rating", Integer.toString(rs.getInt("Rating")));
+        result.put("NumOrders", Integer.toString(rs.getInt("NumOrders")));
+        
+        return result;
+      } catch (SQLException ex) {
+        Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+      }
     }
 }

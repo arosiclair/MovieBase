@@ -58,6 +58,12 @@ and open the template in the editor.
                     <div class="alert alert-danger" role="alert">Error: there was an issue deleting the customer.</div>
                 </c:if>
                 <h2>All Customers</h2>
+                <c:if test="${employee.manager}">
+                  <form method="GET" action="MostActiveCustomers">
+                    <button type="submit" class="btn btn-info">Most Active Customers</button>
+                  </form>
+                  <br>
+                </c:if>
                 <table>
                     <thead>
                         <th>ID</th>
@@ -80,7 +86,9 @@ and open the template in the editor.
                                 <td>${customer.phoneNumber}</td>
                                 <td>${customer.regDate}</td>
                                 <td>${customer.fullAddress}</td>
-                                <td><a class="btn btn-default" href="CreateRentalForm?customerId=${customer.id}">Create Order</a></td>
+                                <c:if test="${not employee.manager}">
+                                  <td><a class="btn btn-default" href="CreateRentalForm?customerId=${customer.id}">Create Order</a></td>
+                                </c:if>
                                 <td><a class="btn btn-default" href="EditCustomer?customerId=${customer.id}">Edit</a></td>
                                 <td><a class="btn btn-danger" href="DeleteCustomer?customerId=${customer.id}">Delete</a></td>
                             </tr>
