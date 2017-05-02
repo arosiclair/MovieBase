@@ -63,8 +63,9 @@ and open the template in the editor.
                     
                 <h2>All Employees</h2>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createEmployee">Add Employee</button>
-                <br>
-                <br>
+                <form method="GET" action="CustomerRepMostRentals">
+                  <button type="submit" class="btn btn-link">Which Employee Oversaw the Most Transactions?</button>
+                </form>
                 <table>
                     <thead>
                         <th>Name</th>

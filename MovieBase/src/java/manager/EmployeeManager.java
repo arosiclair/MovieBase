@@ -12,6 +12,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -191,6 +193,60 @@ public class EmployeeManager {
             Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+    
+    public static List<HashMap<String,String>> getEmployeeMostRentals() {
+      // First create view of all customer reps and number of rentals they handled
+      try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query1 = "CREATE VIEW CountTrans(CustRepId, NumTrans) AS " +
+                            "SELECT R.EmployeeId, COUNT(*) " +
+                            "FROM Rental R " +
+                            "GROUP BY R.EmployeeId;";
+            PreparedStatement stmt1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            stmt1.executeUpdate();
+        } catch (SQLException ex) {
+            // View already exists
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      // Query for the cusomer rep with the most rentals handled
+      try {
+        Connection connection = DBConnectionManager.getConnection();
+        String query2 = "SELECT C.CustRepId, E.FirstName, E.LastName, C.NumTrans " + 
+                        "FROM CountTrans C, Employee E " + 
+                        "WHERE C.NumTrans >= (SELECT MAX(D.NumTrans) FROM CountTrans D) AND C.CustRepId = E.SSN;";
+        PreparedStatement stmt2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+        ResultSet rs = stmt2.executeQuery();
+        
+        List<HashMap<String,String>> custRepList = new ArrayList<HashMap<String,String>>();
+          while(rs.next()) {
+            custRepList.add( parseCountTransAsMap(rs) );
+          }
+
+          return custRepList;
+      }
+      catch (SQLException ex) {
+        Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+      }
+    }
+    
+    private static HashMap<String,String> parseCountTransAsMap(ResultSet rs) {
+      try {
+        // LinkedHashMap ensures order
+        HashMap<String,String> result = new LinkedHashMap<String, String>();
+        result.put("CustRepId", rs.getString("CustRepId"));
+        result.put("CustRepFirstName", rs.getString("FirstName"));
+        result.put("CustRepLastName", rs.getString("LastName"));
+        result.put("NumTrans", Integer.toString(rs.getInt("NumTrans")));
+        
+        return result;
+      } catch (SQLException ex) {
+        Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+      }
+      
+        
     }
   
 }
