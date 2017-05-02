@@ -19,7 +19,7 @@ import manager.EmployeeManager;
  *
  * @author Stanley
  */
-public class CustomerRepMostRentals extends HttpServlet {
+public class MostActiveCustomerReps extends HttpServlet {
 
   /**
    * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,9 +38,9 @@ public class CustomerRepMostRentals extends HttpServlet {
         return;
     }
     
-    List<HashMap<String,String>> custRepList = EmployeeManager.getEmployeeMostRentals();
+    List<HashMap<String,String>> custRepList = EmployeeManager.getMostActiveCustomerReps();
     request.setAttribute("custRepList", custRepList);
-    request.getRequestDispatcher("repmosttransactions.jsp").forward(request, response);
+    request.getRequestDispatcher("mostactivecustomerreps.jsp").forward(request, response);
   }
 
   // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

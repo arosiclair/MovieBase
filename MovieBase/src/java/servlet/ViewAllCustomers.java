@@ -45,7 +45,7 @@ public class ViewAllCustomers extends HttpServlet {
         
         request.setAttribute("employeeSSN", employee.getSSN());
         request.setAttribute("customers", customers);
-        request.getRequestDispatcher("listcustomers.jsp").forward(request, response);
+        request.getRequestDispatcher("customerlist.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

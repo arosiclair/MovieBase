@@ -206,7 +206,7 @@ public class EmployeeManager {
         }
     }
     
-    public static List<HashMap<String,String>> getEmployeeMostRentals() {
+    public static List<HashMap<String,String>> getMostActiveCustomerReps() {
       // First create view of all customer reps and number of rentals they handled
       try {
             Connection connection = DBConnectionManager.getConnection();

@@ -39,7 +39,7 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
-                <h2>Customer Representatives with the Most Transactions (Rentals):</h2>
+                <h2>Most Active Customer Representatives:</h2>
                 <table>
                     <thead>
                         <th>Customer Representative ID</th>

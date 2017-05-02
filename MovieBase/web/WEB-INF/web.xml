@@ -118,8 +118,8 @@
         <servlet-class>servlet.SalesReport</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>CustomerRepMostRentals</servlet-name>
-        <servlet-class>servlet.CustomerRepMostRentals</servlet-class>
+        <servlet-name>MostActiveCustomerReps</servlet-name>
+        <servlet-class>servlet.MostActiveCustomerReps</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>MostActiveCustomers</servlet-name>
@@ -242,8 +242,8 @@
         <url-pattern>/SalesReport</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CustomerRepMostRentals</servlet-name>
-        <url-pattern>/CustomerRepMostRentals</url-pattern>
+        <servlet-name>MostActiveCustomerReps</servlet-name>
+        <url-pattern>/MostActiveCustomerReps</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>MostActiveCustomers</servlet-name>

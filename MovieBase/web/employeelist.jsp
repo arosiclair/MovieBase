@@ -69,7 +69,7 @@ and open the template in the editor.
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createEmployee">Add Employee</button>
                 <br>
                 <br>
-                <form method="GET" action="CustomerRepMostRentals">
+                <form method="GET" action="MostActiveCustomerReps">
                   <button type="submit" class="btn btn-info">Most Active Customer Representatives</button>
                 </form>
                 <br>
