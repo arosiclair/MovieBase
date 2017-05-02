@@ -24,6 +24,9 @@
         <div class="container">
             <div class="page-header">
                 <h1>MovieBase</h1>
+                <form method="POST" action="Logout" style="margin-bottom: 20px;">
+                  <button type="submit" class="btn btn-primary">Logout</button>
+                </form>
             </div>
         </div>
     </header>

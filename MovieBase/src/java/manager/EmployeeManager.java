@@ -30,6 +30,7 @@ public class EmployeeManager {
                                             boolean isManager, String username, String password){
         Connection connection = DBConnectionManager.getConnection();
         try{
+            connection.setAutoCommit(false);
             
             String insertSQL = "INSERT INTO Employee(SSN, FirstName, LastName, PhoneNumber, StartDate, hourlyRate, Address, City, State, ZipCode, Manager) " +
                                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -65,9 +66,19 @@ public class EmployeeManager {
             Account newAccount = new Account(accountId, username, password);
             newEmployee.setAccount(newAccount);
             
+            connection.commit();
+            connection.setAutoCommit(true);
             return newEmployee;
         }catch (SQLException ex) {
             Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+              if (connection != null) {
+                connection.rollback();
+              }
+            } catch (SQLException ex2) {
+              ex2.printStackTrace();
+            }
+            
             return null;
         }
     }

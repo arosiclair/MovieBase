@@ -36,6 +36,7 @@ public class CustomerManager {
                                     String username, String password){
         Connection connection = DBConnectionManager.getConnection();
         try{
+            connection.setAutoCommit(false);
             // Insert new Customer
             String insertSQL = "INSERT INTO Customer(FirstName, LastName, Email, Type, CreditCardNumber, PhoneNumber, RegDate, Address, City, State, ZipCode) " +
                                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -78,9 +79,18 @@ public class CustomerManager {
             Account newAccount = new Account(accountId, username, password);
             newCustomer.setAccount(newAccount);
             
+            connection.commit();
+            connection.setAutoCommit(true);
             return newCustomer;
         } catch (SQLException ex) {
             Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+              if (connection != null) {
+                connection.rollback();
+              }
+            } catch (SQLException ex2) {
+              ex2.printStackTrace();
+            }
             return null;
         }
     }

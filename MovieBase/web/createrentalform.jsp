@@ -25,7 +25,10 @@ and open the template in the editor.
   <header class="header">
     <div class="container">
       <div class="page-header">
-        <h1>Record an Order</h1>
+        <h1>MovieBase</h1>
+        <form method="POST" action="Logout" style="margin-bottom: 20px;">
+          <button type="submit" class="btn btn-primary">Logout</button>
+        </form>
       </div>
     </div>
   </header>
@@ -33,6 +36,7 @@ and open the template in the editor.
   <!-- Main -->
   <div class="main">
     <div class="container">
+      <h2>Record an Order</h2>
       <form method="POST" action="CreateRental" style="padding-bottom: 100px">
         <div class="form-group">
           <label>Movie</label><br>

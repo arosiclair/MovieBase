@@ -29,6 +29,9 @@ and open the template in the editor.
             <div class="container">
                 <div class="page-header">
                     <h1>MovieBase</h1>
+                    <form method="POST" action="Logout" style="margin-bottom: 20px;">
+                      <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
         </header>
@@ -54,6 +57,7 @@ and open the template in the editor.
                         </c:forEach>
                     </tbody>
                 </table>
+                <a class="btn btn-default" href="ViewAllEmployees">Back To Employees</a>  
             </div>
         </div>
     </body>

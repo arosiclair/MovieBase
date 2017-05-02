@@ -23,6 +23,9 @@
         <div class="container">
             <div class="page-header">
                 <h1>MovieBase</h1>
+                <form method="POST" action="Logout" style="margin-bottom: 20px;">
+                  <button type="submit" class="btn btn-primary">Logout</button>
+                </form>
             </div>
         </div>
     </header>
@@ -52,6 +55,7 @@
             <label>Number of Copies</label>
             <input type="number" class="form-control" name="numCopies" value="${movie.numCopies}">
           </div>
+            <a class="btn btn-default" href="ListAllMovies">Back To Movies</a>  
             <button class="btn btn-primary pull-right" type="submit" name="id" value="${movie.id}">Finish Edit</button>
         </form>
       </div>

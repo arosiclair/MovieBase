@@ -24,6 +24,9 @@
         <div class="container">
             <div class="page-header">
                 <h1>MovieBase</h1>
+                <form method="POST" action="Logout" style="margin-bottom: 20px;">
+                  <button type="submit" class="btn btn-primary">Logout</button>
+                </form>
             </div>
         </div>
     </header>
@@ -83,6 +86,7 @@
               </c:choose>
                 
             </div>
+            <a class="btn btn-default" href="ViewAllEmployees">Back To Employees</a>
             <button class="btn btn-primary pull-right" type="submit" name="ssn" value="${empToEdit.SSN}">Finish Edit</button>
           </form>
       </div>
