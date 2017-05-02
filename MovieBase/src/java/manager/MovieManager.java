@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -226,6 +228,58 @@ public class MovieManager {
             Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
+    }
+    
+    public static List<HashMap<String,String>> getMostRentedMovies() {
+      // First create view of all rented movies and number of rentals made
+      try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query1 = "CREATE VIEW MovieOrders(MovieId, NumOrders) AS " +
+                            "SELECT R.MovieId, COUNT(R.MovieId) " +
+                            "FROM Rental R " +
+                            "GROUP BY R.MovieId;";
+            PreparedStatement stmt1 = connection.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+            stmt1.executeUpdate();
+        } catch (SQLException ex) {
+            // View already exists
+            Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      // Query for the cusomer rep with the most rentals handled
+      try {
+        Connection connection = DBConnectionManager.getConnection();
+        String query2 = "SELECT O.MovieId, M.Name, M.Rating, O.NumOrders " + 
+                        "FROM MovieOrders O, Movie M " + 
+                        "WHERE O.MovieId = M.Id AND O.NumOrders >= (SELECT MAX(D.NumOrders) FROM MovieOrders D);";
+        PreparedStatement stmt2 = connection.prepareStatement(query2, Statement.RETURN_GENERATED_KEYS);
+        ResultSet rs = stmt2.executeQuery();
+        
+        List<HashMap<String,String>> custRepList = new ArrayList<HashMap<String,String>>();
+        while(rs.next()) {
+          custRepList.add( parseCountOrdersAsMap(rs) );
+        }
+
+        return custRepList;
+      }
+      catch (SQLException ex) {
+        Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+      }
+    }
+    
+    private static HashMap<String,String> parseCountOrdersAsMap(ResultSet rs) {
+      try {
+        // LinkedHashMap ensures order
+        HashMap<String,String> result = new LinkedHashMap<String, String>();
+        result.put("MovieId", rs.getString("MovieId"));
+        result.put("MovieName", rs.getString("Name"));
+        result.put("Rating", Integer.toString(rs.getInt("Rating")));
+        result.put("NumOrders", Integer.toString(rs.getInt("NumOrders")));
+        
+        return result;
+      } catch (SQLException ex) {
+        Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
+        return null;
+      }
     }
     
 }

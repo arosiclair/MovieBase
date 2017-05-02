@@ -61,6 +61,10 @@ and open the template in the editor.
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addMovie">Add Movie</button>
                 <br>
                 <br>
+                <form method="GET" action="MostRentedMovies">
+                  <button type="submit" class="btn btn-info">Most Actively Rented Movies</button>
+                </form>
+                <br>
                 <table>
                     <thead>
                         <th>ID</th>

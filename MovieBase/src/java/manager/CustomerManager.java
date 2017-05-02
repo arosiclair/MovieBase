@@ -346,7 +346,7 @@ public class CustomerManager {
         result.put("CustRepFirstName", rs.getString("FirstName"));
         result.put("CustRepLastName", rs.getString("LastName"));
         result.put("Rating", Integer.toString(rs.getInt("Rating")));
-        result.put("NumOrders", Integer.toString(rs.getInt("NumOrders")));
+        result.put("NumRentals", Integer.toString(rs.getInt("NumOrders")));
         
         return result;
       } catch (SQLException ex) {

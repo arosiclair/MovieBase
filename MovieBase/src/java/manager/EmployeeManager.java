@@ -230,11 +230,11 @@ public class EmployeeManager {
         ResultSet rs = stmt2.executeQuery();
         
         List<HashMap<String,String>> custRepList = new ArrayList<HashMap<String,String>>();
-          while(rs.next()) {
-            custRepList.add( parseCountTransAsMap(rs) );
-          }
+        while(rs.next()) {
+          custRepList.add( parseCountTransAsMap(rs) );
+        }
 
-          return custRepList;
+        return custRepList;
       }
       catch (SQLException ex) {
         Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
