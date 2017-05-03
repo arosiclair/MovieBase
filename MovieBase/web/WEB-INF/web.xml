@@ -133,6 +133,10 @@
         <servlet-name>RentalHistory</servlet-name>
         <servlet-class>servlet.RentalHistory</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ReturnRental</servlet-name>
+        <servlet-class>servlet.ReturnRental</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -260,6 +264,10 @@
     <servlet-mapping>
         <servlet-name>RentalHistory</servlet-name>
         <url-pattern>/RentalHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReturnRental</servlet-name>
+        <url-pattern>/ReturnRental</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

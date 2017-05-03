@@ -34,6 +34,7 @@ public class Rental {
         this.customerId = customerId;
         this.movieId = movieId;
         this.dateTime = dateTime;
+        this.returnDate = returnDate;
     }
     
     public int getId(){

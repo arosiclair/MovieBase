@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -225,6 +226,22 @@ public class RentalManager {
         } catch (SQLException ex) {
             Logger.getLogger(RentalManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
+        }
+    }
+    
+    public static boolean returnRental(int rentalId){
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            Date now = new Date(Calendar.getInstance().getTimeInMillis());
+            String query = "UPDATE Rental SET ReturnDate = ? WHERE Id = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setDate(1, now);
+            stmt.setInt(2, rentalId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(RentalManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
 }

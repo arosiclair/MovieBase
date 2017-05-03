@@ -40,6 +40,12 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
+                <c:if test="${param.returnSuccess}">
+                    <div class="alert alert-success" role="alert">Rental successfully returned.</div>
+                </c:if>
+                <c:if test="${param.returnFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue returning your rental.</div>
+                </c:if>
                 <h2>${customer.firstName}'s Rental History</h2>
                 <table>
                     <thead>
@@ -55,7 +61,7 @@ and open the template in the editor.
                                 <td class="text-center">
                                     <c:choose>
                                         <c:when test="${empty rentals[loop.index].returnDate}">
-                                            <a class="btn btn-default" href="#">Return</a>
+                                            <a class="btn btn-default" href="ReturnRental?rentalId=${rentals[loop.index].id}">Return</a>
                                         </c:when>
                                         <c:otherwise>
                                             <fmt:formatDate type="date" dateStyle="short" value="${rentals[loop.index].returnDate}"/>
