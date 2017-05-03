@@ -38,7 +38,8 @@ public class ReturnRental extends HttpServlet {
         }
         
         int rentalId = Integer.parseInt(request.getParameter("rentalId"));
-        if(RentalManager.returnRental(rentalId))
+        int movieId = Integer.parseInt(request.getParameter("movieId"));
+        if(RentalManager.returnRental(rentalId, movieId))
             response.sendRedirect("RentalHistory?returnSuccess=true");
         else
             response.sendRedirect("RentalHistory?returnFailed=true");

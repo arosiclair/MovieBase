@@ -69,7 +69,7 @@ and open the template in the editor.
                                 <td class="text-center">
                                     <c:choose>
                                         <c:when test="${empty rentals[loop.index].returnDate}">
-                                            <a class="btn btn-default" href="ReturnRental?rentalId=${rentals[loop.index].id}">Return</a>
+                                            <a class="btn btn-default" href="ReturnRental?rentalId=${rentals[loop.index].id}&movieId=${movies[loop.index].id}">Return</a>
                                         </c:when>
                                         <c:otherwise>
                                             <fmt:formatDate type="date" dateStyle="short" value="${rentals[loop.index].returnDate}"/>

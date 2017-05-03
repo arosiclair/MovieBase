@@ -282,4 +282,32 @@ public class MovieManager {
       }
     }
     
+    // decrements the number of copies for a movie, returns false if no copies are available
+    public static boolean decrNumCopies(int movieId){
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "UPDATE Movie SET NumCopies = NumCopies - 1 WHERE Id = ? AND NumCopies > 0";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, movieId);
+            int numAffected = stmt.executeUpdate();
+            return numAffected == 1;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
+    
+    public static boolean incrNumCopies(int movieId){
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "UPDATE Movie SET NumCopies = NumCopies + 1 WHERE Id = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, movieId);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+    }
 }

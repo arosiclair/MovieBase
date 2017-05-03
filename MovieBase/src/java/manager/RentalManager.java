@@ -24,6 +24,9 @@ import model.Rental;
  */
 public class RentalManager {
     public static Rental createRental(String employeeId, int movieId, int customerId){
+        // Check and decrement the number of copies first
+        if(!MovieManager.decrNumCopies(movieId))
+            return null;
         Connection connection = DBConnectionManager.getConnection();
         try{
             // Insert new Customer
@@ -215,7 +218,7 @@ public class RentalManager {
     public static List<Rental> getCustomerRentals(int customerId){
         try {
             Connection connection = DBConnectionManager.getConnection();
-            String query = "SELECT * FROM Rental WHERE CustomerId = ?";
+            String query = "SELECT * FROM Rental WHERE CustomerId = ? ORDER BY Timestamp DESC";
             PreparedStatement stmt = connection.prepareStatement(query);
             stmt.setInt(1, customerId);
             ResultSet rs = stmt.executeQuery();
@@ -246,12 +249,14 @@ public class RentalManager {
         }
     }
     
-    public static boolean returnRental(int rentalId){
+    public static boolean returnRental(int rentalId, int movieId){
+        if(!MovieManager.incrNumCopies(movieId))
+            return false;
         try {
             Connection connection = DBConnectionManager.getConnection();
-            Date now = new Date(Calendar.getInstance().getTimeInMillis());
             String query = "UPDATE Rental SET ReturnDate = ? WHERE Id = ?";
             PreparedStatement stmt = connection.prepareStatement(query);
+            Date now = new Date(Calendar.getInstance().getTimeInMillis());
             stmt.setDate(1, now);
             stmt.setInt(2, rentalId);
             stmt.executeUpdate();
