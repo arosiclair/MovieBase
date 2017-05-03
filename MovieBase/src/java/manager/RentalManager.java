@@ -74,7 +74,8 @@ public class RentalManager {
             int movieId = rs.getInt("MovieId");
             int customerId = rs.getInt("CustomerId");
             Date dateTime = new Date(rs.getTimestamp("Timestamp").getTime());
-            return new Rental(rentalId, employeeId, movieId, customerId, dateTime);
+            Date returnDate = rs.getDate("ReturnDate");
+            return new Rental(rentalId, employeeId, movieId, customerId, dateTime, returnDate);
         } catch (SQLException ex) {
             Logger.getLogger(CustomerManager.class.getName()).log(Level.SEVERE, null, ex);
             return null;
@@ -208,5 +209,22 @@ public class RentalManager {
           return null;
       }
       
+    }
+    
+    public static List<Rental> getCustomerRentals(int customerId){
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT * FROM Rental WHERE CustomerId = ?";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, customerId);
+            ResultSet rs = stmt.executeQuery();
+            List<Rental> rentals = new ArrayList();
+            while(rs.next())
+                rentals.add(parseRental(rs));
+            return rentals;
+        } catch (SQLException ex) {
+            Logger.getLogger(RentalManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 }

@@ -24,6 +24,7 @@ import model.Account;
 import model.AccountType;
 import model.Customer;
 import model.Movie;
+import model.Rental;
 
 /**
  *
@@ -168,7 +169,6 @@ public class CustomerManager {
     }
 
     public static List<Movie> getWatchList(int customerId) {
-        Connection connection = DBConnectionManager.getConnection();
         List<Integer> movieIds = getWatchListMovieIds(customerId);
         return MovieManager.getMovies(movieIds);
     }

@@ -17,6 +17,7 @@ public class Rental {
     private String employeeId;
     private int customerId;
     private int movieId;
+    private Date returnDate;
     
     public Rental(){}
     
@@ -27,7 +28,7 @@ public class Rental {
         this.movieId = movieId;
     }
     
-    public Rental(int id, String employeeId, int movieId, int customerId, Date dateTime){
+    public Rental(int id, String employeeId, int movieId, int customerId, Date dateTime, Date returnDate){
         this.id = id;
         this.employeeId = employeeId;
         this.customerId = customerId;
@@ -72,5 +73,13 @@ public class Rental {
 
     public void setDateTime(Date dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public Date getReturnDate() {
+        return returnDate;
+    }
+
+    public void setReturnDate(Date returnDate) {
+        this.returnDate = returnDate;
     }
 }

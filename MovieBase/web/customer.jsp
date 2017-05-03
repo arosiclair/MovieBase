@@ -51,7 +51,7 @@ and open the template in the editor.
                 <h2>Welcome, ${customer.firstName}</h2>
                 <a class="btn btn-default" href="CustomerWatchList">My Watch List</a><br>
                 <a class="btn btn-default" href="#">Rented Movies</a><br>
-                <a class="btn btn-default" href="#">Rental History</a><br>
+                <a class="btn btn-default" href="RentalHistory">Rental History</a><br>
                 <a class="btn btn-default" href="BestSellingMovies">View Best Sellers</a><br>
                 <a class="btn btn-default" href="SearchMovies">Search Movies</a><br>
                 <a class="btn btn-default" href="EditCustomer?customerId=${customer.id}">Edit Your Settings</a><br>
