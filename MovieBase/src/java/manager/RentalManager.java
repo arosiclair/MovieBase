@@ -229,6 +229,23 @@ public class RentalManager {
         }
     }
     
+    public static List<Rental> getActiveRentals(int customerId){
+        try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT * FROM Rental WHERE CustomerId = ? AND ReturnDate IS NULL";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setInt(1, customerId);
+            ResultSet rs = stmt.executeQuery();
+            List<Rental> rentals = new ArrayList();
+            while(rs.next())
+                rentals.add(parseRental(rs));
+            return rentals;
+        } catch (SQLException ex) {
+            Logger.getLogger(RentalManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+    
     public static boolean returnRental(int rentalId){
         try {
             Connection connection = DBConnectionManager.getConnection();

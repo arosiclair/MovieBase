@@ -46,7 +46,15 @@ and open the template in the editor.
                 <c:if test="${param.returnFailed}">
                     <div class="alert alert-danger" role="alert">Error: there was an issue returning your rental.</div>
                 </c:if>
-                <h2>${customer.firstName}'s Rental History</h2>
+                
+                    <c:choose>
+                    <c:when test="${not empty activeRentals}">
+                        <h2>${customer.firstName}'s Active Rentals</h2>
+                    </c:when>
+                    <c:otherwise>
+                        <h2>${customer.firstName}'s Rental History</h2>
+                    </c:otherwise>
+                </c:choose>
                 <table>
                     <thead>
                         <th>Movie</th>

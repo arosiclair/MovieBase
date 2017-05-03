@@ -137,6 +137,10 @@
         <servlet-name>ReturnRental</servlet-name>
         <servlet-class>servlet.ReturnRental</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ActiveRentals</servlet-name>
+        <servlet-class>servlet.ActiveRentals</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -268,6 +272,10 @@
     <servlet-mapping>
         <servlet-name>ReturnRental</servlet-name>
         <url-pattern>/ReturnRental</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ActiveRentals</servlet-name>
+        <url-pattern>/ActiveRentals</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
