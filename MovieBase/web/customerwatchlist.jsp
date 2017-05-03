@@ -38,7 +38,7 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
-                <c:if test="${param.addSuccess}">
+                <c:if test="true">
                     <div class="alert alert-success" role="alert">Movie successfully added to your watch list.</div>
                 </c:if>
                 <c:if test="${param.addFailed}">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <!--
 To change this license header, choose License Headers in Project Properties.
@@ -41,12 +42,19 @@ and open the template in the editor.
         <!-- Main -->
         <div class="main">
             <div class="container">
+                <c:if test="${param.editSuccess}">
+                    <div class="alert alert-success" role="alert">Your settings were successfully edited.</div>
+                </c:if>
+                <c:if test="${param.editFailed}">
+                    <div class="alert alert-danger" role="alert">Error: there was an issue updating your settings.</div>
+                </c:if>
                 <h2>Welcome, ${customer.firstName}</h2>
                 <a class="btn btn-default" href="CustomerWatchList">My Watch List</a><br>
                 <a class="btn btn-default" href="#">Rented Movies</a><br>
                 <a class="btn btn-default" href="#">Rental History</a><br>
                 <a class="btn btn-default" href="BestSellingMovies">View Best Sellers</a><br>
                 <a class="btn btn-default" href="SearchMovies">Search Movies</a><br>
+                <a class="btn btn-default" href="EditCustomer?customerId=${customer.id}">Edit Your Settings</a><br>
             </div>
         </div>
     </body>

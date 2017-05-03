@@ -234,7 +234,7 @@ public class CustomerManager {
         }
     }
 
-    public static boolean editCustomer(int customerId, String firstName, String lastName, 
+    public static Customer editCustomer(int customerId, String firstName, String lastName, 
             String email, String type, String creditCardNumber, int rating, 
             String phoneNumber, String address, String city, String state, int zipCode) {
         try {
@@ -255,10 +255,10 @@ public class CustomerManager {
             stmt.setInt(12, customerId);
             stmt.executeUpdate();
             
-            return true;
+            return new Customer(customerId, firstName, lastName, email, AccountType.valueOf(type), city, rating, phoneNumber, null, address, city, state, zipCode);
         } catch (SQLException ex) {
             Logger.getLogger(EmployeeManager.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
+            return null;
         }
     }
 
