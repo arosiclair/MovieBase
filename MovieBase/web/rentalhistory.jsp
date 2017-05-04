@@ -62,6 +62,7 @@ and open the template in the editor.
                         <th>Return Date</th>
                     </thead>
                     <tbody>
+                      <c:if test="${fn:length(rentals) > 0}">
                         <c:forEach begin="0" end="${fn:length(rentals) - 1}" varStatus="loop">
                             <tr>
                                 <td>${movies[loop.index].name}</td>
@@ -78,6 +79,7 @@ and open the template in the editor.
                                 </td>
                             </tr>
                         </c:forEach>
+                      </c:if>
                     </tbody>
                 </table>
                 <a class="btn btn-default" href="Customer">Back To Main Menu</a>
