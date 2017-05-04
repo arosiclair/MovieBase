@@ -55,6 +55,16 @@ and open the template in the editor.
                 <a class="btn btn-default" href="BestSellingMovies">View Best Sellers</a><br>
                 <a class="btn btn-default" href="SearchMovies">Search Movies</a><br>
                 <a class="btn btn-default" href="EditCustomer?customerId=${customer.id}">Edit Your Settings</a><br>
+                <form method="GET" action="MovieSearchByActor">
+                  <div class="form-group">
+                    <label>Search Movies By Actor: </label><br>
+                    <div class="form-group">
+                      <label>Name</label>
+                      <input type="text" class="form-control" name="name">
+                    </div>
+                    <input class="btn btn-primary" type="submit">
+                  </div>
+                </form>
             </div>
         </div>
     </body>

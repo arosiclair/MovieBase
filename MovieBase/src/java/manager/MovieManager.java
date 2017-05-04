@@ -310,4 +310,23 @@ public class MovieManager {
             return false;
         }
     }
+    
+    public static List<Movie> getMoviesByActor(String name) {
+      try {
+            Connection connection = DBConnectionManager.getConnection();
+            String query = "SELECT M.Id, M.Name, M.Type, M.Rating, M.DistrFee, M.NumCopies " + 
+                    "FROM Movie M, Actor A, ActsIn Ac " + 
+                    "WHERE A.Name = ? AND Ac.ActorId = A.Id AND Ac.MovieId = M.Id;";
+            PreparedStatement stmt = connection.prepareStatement(query);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+            List<Movie> searchResults = new ArrayList();
+            while(rs.next())
+                searchResults.add(parseMovie(rs));
+            return searchResults;
+        } catch (SQLException ex) {
+            Logger.getLogger(MovieManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
 }

@@ -141,6 +141,10 @@
         <servlet-name>ActiveRentals</servlet-name>
         <servlet-class>servlet.ActiveRentals</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>MovieSearchByActor</servlet-name>
+        <servlet-class>servlet.MovieSearchByActor</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateCustomer</servlet-name>
         <url-pattern>/CreateCustomer</url-pattern>
@@ -276,6 +280,10 @@
     <servlet-mapping>
         <servlet-name>ActiveRentals</servlet-name>
         <url-pattern>/ActiveRentals</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MovieSearchByActor</servlet-name>
+        <url-pattern>/MovieSearchByActor</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
